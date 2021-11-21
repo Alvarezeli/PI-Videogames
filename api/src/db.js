@@ -36,8 +36,9 @@ const { Videogame, Genero } = sequelize.models;
 // Product.hasMany(Reviews);
 Videogame.belongsToMany(Genero, { through: 'videogame_genero' });
 Genero.belongsToMany(Videogame, { through: 'videogame_genero' });
-//Counter Strike[1] Genero [Accion]
-
+//Videogame[1] ||  Genero [Accion, Tiros] ---> v.id ---- g.id
+//                                              1         1
+//                                              1         2
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
