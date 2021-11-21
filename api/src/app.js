@@ -1,7 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+const morgan = require('morgan'); 
 const routes = require('./routes/index.js');
 
 require('./db.js');
@@ -22,7 +22,9 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('/', routes);
+server.use('/', routes); 
+//Cualquier ruta que escriba va a utilizar el index de routes. Por eso tenemos que escribir las rutas ahi. 
+
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

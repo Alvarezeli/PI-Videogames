@@ -18,8 +18,10 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     lanzamiento: {
-      type: DataTypes.DATEONLY,
-      defaultValue: DataTypes.NOW
+      type: DataTypes.STRING,
+      validate: {
+        isDate: true,
+      }
     },
     rating: {
       type: DataTypes.INTEGER,
