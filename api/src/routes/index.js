@@ -1,6 +1,7 @@
 const { Router } = require('express');
+//Me traigo las tablas de la base de datos
+const { Videogames, Genre, videogame_genre } = require('../db.js');
 // Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 const videogames = require('./videogames');
 const genres = require('./genres');
 

@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const axios = require('axios');
+//Me traigo las tablas de la base de datos
+const { Videogames, Genre, videogame_genre } = require('../db.js');
 
 /* - [ ] __GET /videogames__:
 - Obtener un listado de los videojuegos
