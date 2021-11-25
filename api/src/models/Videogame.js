@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    release: {
+    released: {
       type: DataTypes.STRING,
-      validate: {
+      /* validate: {
         isDate: true,
-      }
+      } */
     },
     rating: {
       type: DataTypes.DECIMAL,
@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
       }
     },
     platforms: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     background_image: {
