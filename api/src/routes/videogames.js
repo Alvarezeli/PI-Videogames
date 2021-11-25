@@ -8,14 +8,10 @@ const { Op } = require("sequelize");
 const router = Router();
 
 //ENDPOINTS
-/* - GET https://api.rawg.io/api/games
-- GET https://api.rawg.io/api/games?search={game}
-- GET https://api.rawg.io/api/genres
-https://api.rawg.io/api/genres?key=b44e674330244a80bdca90e54415cb8b
+/* - 
+
 - GET https://api.rawg.io/api/games/{id}
 https://api.rawg.io/api/games/witcher?key=b44e674330244a80bdca90e54415cb8b */
-
-//GET https://api.rawg.io/api/platforms?key=YOUR_API_KEY
 
 
 /* - [ ] __GET /videogames__:
@@ -25,6 +21,12 @@ https://api.rawg.io/api/games/witcher?key=b44e674330244a80bdca90e54415cb8b */
 //////////////OPERADORES OP /////////////
 // [Op.like]: '%hat',                       // LIKE '%hat'
 //[Op.substring]: 'hat',                   // LIKE '%hat%'
+
+//////////// END POINTS ////////////////
+//GET https://api.rawg.io/api/games
+//GET https://api.rawg.io/api/games?search={game}
+
+
 router.get("/videogames", async (req, res) => {
   try {
     //Si me llega por query
@@ -113,10 +115,43 @@ router.get("/videogames", async (req, res) => {
 - Obtener el detalle de un videojuego en particular
 - Debe traer solo los datos pedidos en la ruta de detalle de videojuego
 - Incluir los géneros asociados.
+
+- GET https://api.rawg.io/api/games/{id}
+
+https://api.rawg.io/api/games/5505?key=b44e674330244a80bdca90e54415cb8
+
  */
-router.get("/videogame:id", (req, res) => {
-  const { id } = req.params;
-  console.log(id);
+
+router.get("/videogame/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    //console.log(typeof(id))
+    //Busca en la base de datos si tiene ese id
+    // let searchDb = await Videogame.findByPk(id)
+    // return searchDb ? res.json(searchDb) : res.status(404).send('El millito millines anduvo por aqui');
+  
+    //Busca en la api el id
+    let searchApi = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+    //res.json(searchApi.data.genres)
+    if (searchApi.data.id) {
+      //console.log('lo estoy intentando')
+        res.json( {
+          name: searchApi.data.name,
+          id: searchApi.data.id,
+          background_image: searchApi.data.background_image,
+          genres: searchApi.data.genres.map((genre) => (genre.name)), //para que me devuelva todos los generos
+          released: searchApi.data.released,
+          rating: searchApi.data.rating,
+          description: searchApi.data.description,
+          platforms: searchApi.data.platforms.map((plat) => (plat.platform.name)),
+     });
+    };
+   
+  } catch (error) {
+    console.log(error)
+    res.send(error)
+  }
+ 
 });
 
 /* - [ ] __POST /videogame__:
