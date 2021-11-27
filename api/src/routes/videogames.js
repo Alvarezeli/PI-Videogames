@@ -126,9 +126,9 @@ router.get("/videogame/:id", async (req, res) => {
   try {
     const { id } = req.params;
     //console.log(typeof(id))
-    //Busca en la base de datos si tiene ese id
+   // Busca en la base de datos si tiene ese id
     // let searchDb = await Videogame.findByPk(id)
-    // return searchDb ? res.json(searchDb) : res.status(404).send('El millito millines anduvo por aqui');
+    // searchDb ? res.json(searchDb) : res.status(404).send('El millito millines anduvo por aqui');
   
     //Busca en la api el id
     let searchApi = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
@@ -166,6 +166,7 @@ router.post("/videogame", async (req, res) => {
     rating,
     genres,
     platforms,
+    createdInDb,
     background_image,
   } = req.body;
 
@@ -179,24 +180,20 @@ router.post("/videogame", async (req, res) => {
         rating,
         platforms,
         background_image,
+        createdInDb
       },
     });
-    //Mapea sobre los elementos de genre
-    genres.map(async (element) => {
-      const [newGenres, genresCreated] = await Genre.findOrCreate({
-        where: { nombre: genres },
-        defaults: {
-          nombre: genres,
-        },
-      });
-      //Vinculacion: Va a crear un nuevo videojuego con los nuevos generos asignados
-      newVideogame.addGenre(newGenres);
-    })(videogameCreated)
-      ? res.send(`El videojuego ${name} fue exitosamente creado`)
-      : res.send(`El videogame ${name} ya ha sido creado`);
+    
+    let genreDb = await Genre.findAll({
+      where: { name : genres }
+    });
+    //Hacemos la vinculacion 
+    newVideogame.addGenre(genreDb);
+
+    (videogameCreated) ? res.send('El videojuego fue creado con exito') : res.send('El videojuego ya ha sido creado')
   } catch (error) {
     console.log(error);
-    res.send("Uuups, los duendes otra vez");
+    res.status(404).send("Uuups, los duendes otra vez");
   }
 });
 
