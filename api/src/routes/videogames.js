@@ -46,7 +46,7 @@ router.get("/videogames", async (req, res) => {
       let count = await Videogame.count({
         where: {
           name: {
-            [Op.like]: `%${req.query.name}%`,
+            [Op.iLike]: `%${req.query.name}%`, //iLike es case insensitive
           },
         },
       });
@@ -125,11 +125,9 @@ https://api.rawg.io/api/games/5505?key=b44e674330244a80bdca90e54415cb8
 router.get("/videogame/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    //console.log(typeof(id))
-   // Busca en la base de datos si tiene ese id
-    // let searchDb = await Videogame.findByPk(id)
-    // searchDb ? res.json(searchDb) : res.status(404).send('El millito millines anduvo por aqui');
-  
+    //const id = req.params.id;
+    //console.log('Llego por params:', typeof(id))
+   
     //Busca en la api el id
     let searchApi = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
     //res.json(searchApi.data.genres)
@@ -146,12 +144,15 @@ router.get("/videogame/:id", async (req, res) => {
           platforms: searchApi.data.platforms.map((plat) => (plat.platform.name)),
      });
     };
+
+    // Busca en la base de datos si tiene ese id
+    let searchDb = await Videogame.findByPk(id);
+    return searchDb.length ? res.json(searchDb) : res.status(404).send('El millito millines anduvo por aqui');
    
   } catch (error) {
     console.log(error)
     res.send(error)
   }
- 
 });
 
 /* - [ ] __POST /videogame__:
