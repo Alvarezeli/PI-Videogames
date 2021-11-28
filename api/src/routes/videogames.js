@@ -13,7 +13,6 @@ const router = Router();
 - GET https://api.rawg.io/api/games/{id}
 https://api.rawg.io/api/games/witcher?key=b44e674330244a80bdca90e54415cb8b */
 
-
 /* - [ ] __GET /videogames__:
 - Obtener un listado de los videojuegos
 - Debe devolver solo los datos necesarios para la ruta principal*/
@@ -25,7 +24,6 @@ https://api.rawg.io/api/games/witcher?key=b44e674330244a80bdca90e54415cb8b */
 //////////// END POINTS ////////////////
 //GET https://api.rawg.io/api/games
 //GET https://api.rawg.io/api/games?search={game}
-
 
 router.get("/videogames", async (req, res) => {
   try {
@@ -55,61 +53,63 @@ router.get("/videogames", async (req, res) => {
       let dataApi = await axios.get(
         `https://api.rawg.io/api/games?search=${req.query.name}&key=${API_KEY}&page_size=${rest}`
       );
-      const { results } = dataApi.data
-      //Mapeamos los datos de result para que devuelva los datos que realmente necesitamos 
+      const { results } = dataApi.data;
+      //Mapeamos los datos de result para que devuelva los datos que realmente necesitamos
       let arrDataApi = results.map((el) => {
         return {
           name: el.name,
           id: el.id,
           background_image: el.background_image,
-          genres: el.genres.map((genre) => (genre.name)), //para que me devuelva todos los generos
+          genres: el.genres.map((genre) => genre.name), //para que me devuelva todos los generos
           released: el.released,
           rating: el.rating,
           description: el.description,
-          platforms: el.platforms.map((plat) => (plat.platform.name)),
+          platforms: el.platforms.map((plat) => plat.platform.name),
         };
       });
-  
+
       //Union de los datos
       let dataAll = [...datadb, ...arrDataApi];
-      return dataAll.length ? res.json(dataAll) : res.status(404).send('Que más quieres de mi');   
+      return dataAll.length
+        ? res.json(dataAll)
+        : res.status(404).send("Que más quieres de mi");
     }
 
     //Si no llega por query
     //consulte a la base de datos
     let allDataDb = await Videogame.findAll({
-      limit: 100
-    })
+      limit: 100,
+    });
 
     //Consulta a la api
     let count = await Videogame.count({
-      limit: 100
+      limit: 100,
     });
     let rest = 100 - count;
-    const responseApi = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=${rest}`);
+    const responseApi = await axios.get(
+      `https://api.rawg.io/api/games?key=${API_KEY}&page_size=${rest}`
+    );
     const { results } = responseApi.data;
     const infoApi = results.map((el) => {
       return {
         name: el.name,
         id: el.id,
         background_image: el.background_image,
-        genres: el.genres.map((genre) => (genre.name)), //para que me devuelva todos los generos
+        genres: el.genres.map((genre) => genre.name), //para que me devuelva todos los generos
         released: el.released,
         rating: el.rating,
         description: el.description,
-        platforms: el.platforms.map((plat) => (plat.platform.name)),
+        platforms: el.platforms.map((plat) => plat.platform.name),
       };
     });
 
     let dataDataAll = [...allDataDb, ...infoApi];
     res.json(dataDataAll);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.send(error);
   }
 });
-
-
 
 /* - [ ] __GET /videogame/{idVideogame}__:
 - Obtener el detalle de un videojuego en particular
@@ -127,31 +127,36 @@ router.get("/videogame/:id", async (req, res) => {
     const { id } = req.params;
     //const id = req.params.id;
     //console.log('Llego por params:', typeof(id))
-   
-    //Busca en la api el id
-    let searchApi = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
-    //res.json(searchApi.data.genres)
-    if (searchApi.data.id) {
-      //console.log('lo estoy intentando')
-        res.json( {
-          name: searchApi.data.name,
-          id: searchApi.data.id,
-          background_image: searchApi.data.background_image,
-          genres: searchApi.data.genres.map((genre) => (genre.name)), //para que me devuelva todos los generos
-          released: searchApi.data.released,
-          rating: searchApi.data.rating,
-          description: searchApi.data.description,
-          platforms: searchApi.data.platforms.map((plat) => (plat.platform.name)),
-     });
-    };
-
     // Busca en la base de datos si tiene ese id
-    let searchDb = await Videogame.findByPk(id);
-    return searchDb.length ? res.json(searchDb) : res.status(404).send('El millito millines anduvo por aqui');
-   
+    if (id) {
+      const gameDb = await Videogame.findByPk(id);
+      if (gameDb) {
+        return res.json(gameDb);
+      } else {
+        // //Busca en la api el id
+        const searchApi = await axios.get(
+          `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
+        );
+        //res.json(searchApi.data.genres)
+        if (searchApi) {
+          //console.log('lo estoy intentando')
+          return res.json({
+            name: searchApi.data.name,
+            id: searchApi.data.id,
+            background_image: searchApi.data.background_image,
+            genres: searchApi.data.genres.map((genre) => genre.name), //para que me devuelva todos los generos
+            released: searchApi.data.released,
+            rating: searchApi.data.rating,
+            description: searchApi.data.description,
+            platforms: searchApi.data.platforms.map(
+              (plat) => plat.platform.name
+            ),
+          });
+        }
+      }
+    }
   } catch (error) {
-    console.log(error)
-    res.send(error)
+    res.status(404).send(error);
   }
 });
 
@@ -181,17 +186,19 @@ router.post("/videogame", async (req, res) => {
         rating,
         platforms,
         background_image,
-        createdInDb
+        createdInDb,
       },
     });
-    
+
     let genreDb = await Genre.findAll({
-      where: { name : genres }
+      where: { name: genres },
     });
-    //Hacemos la vinculacion 
+    //Hacemos la vinculacion
     newVideogame.addGenre(genreDb);
 
-    (videogameCreated) ? res.send('El videojuego fue creado con exito') : res.send('El videojuego ya ha sido creado')
+    videogameCreated
+      ? res.send("El videojuego fue creado con exito")
+      : res.send("El videojuego ya ha sido creado");
   } catch (error) {
     console.log(error);
     res.status(404).send("Uuups, los duendes otra vez");
