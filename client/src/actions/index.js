@@ -1,8 +1,5 @@
 import axios from "axios";
-
-export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
-export const FILTER_VIDEOGAMES_BY_GENRES = 'FILTER_VIDEOGAMES_BY_GENRES';
-
+import { GET_VIDEOGAMES, GET_GENRES, FILTER_VIDEOGAMES_BY_GENRES } from "../Constants/ActionTypes";
 
 //acciones que vamos a realizar en el home.
 export function getVideogames() {
@@ -10,19 +7,40 @@ export function getVideogames() {
       //aca es donde sucede la conexion entre el front y el back
       //El axios por default hace el get 
       var json = await axios.get('http://localhost:3001/videogames');
-      console.log(json.data)
       return dispatch({
         type: GET_VIDEOGAMES,
         payload: json.data})  
   };
 };
 
+export function getGenres(){
+  return async function (dispatch){
+    var json = await axios.get('http://localhost:3001/genres');
+    return dispatch({
+      type: GET_GENRES,
+      payload: json.data
+    })
+  }
+}
+
+// function pruebaThen(){
+//   return async function(dispatch) {
+//     await axios.get('http://localhost:3001/genres')
+//     .then(data => {
+//       return dispatch({
+//         type: GET_GENRES,
+//         payload: data.data
+//       })
+//     })
+//   }
+// }
+
 //Esta filtra por generos los videojuegos 
 //payload === value que nos va a llegar 
-export function filterVideogamesByGenres(payload){
+export function filterVideogamesByGenres(genre){
   return {
     type: FILTER_VIDEOGAMES_BY_GENRES,
-    payload
+    payload : genre //Adventure
   }
 }
 

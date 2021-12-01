@@ -10,7 +10,8 @@ import styles from './Home.module.css';
 export default function Home() {
   const dispatch = useDispatch();
   const allVideogames = useSelector((state) => state.videogames); //Esto es lo mismo que usar el mapStateToprops
-
+  const allGenres = useSelector((state) => state.genres);
+  //console.log(allGenres)
   //Vamos a intentar el paginado
   //Nos definimos varios estados locales 
   //1. Un estado con la pagina actual y otro estado que me sete la pagina actual
@@ -61,25 +62,14 @@ export default function Home() {
           <option value="existed">Existed</option>
         </select>
         <select onChange= {(e) => handleFilterGenre(e)}>
-          <option value="All">All genres</option>
-          <option value="Action">Action</option>
-          <option value="Indie">Indie</option>
-          <option value="Adventure">Adventure</option>
-          <option value="RPG">RPG</option>
-          <option value="Strategy">Strategy</option>
-          <option value="Shooter">Shooter</option>
-          <option value="Casual">Casual</option>
-          <option value="Simulation">Simulation</option>
-          <option value="Puzzle">Puzzle</option>
-          <option value="Arcade">Arcade</option>
-          <option value="Platformer">Platformer</option>
-          <option value="Racing">Racing</option>
-          <option value="Massively Multiplayer">Massively Multiplayer</option>
-          <option value="Fighting">Fighting</option>
-          <option value="Family">Family</option>
-          <option value="Board Games">Board Games</option>
-          <option value="Educational">Educational</option>
-          <option value="Card">Card</option>
+         <option value="All" key='30'>All genres</option>
+          {
+            allGenres.map((genre) => {
+              return(
+                <option value={genre.name} key={genre.id}>{genre.name}</option>
+              )
+            })
+          }
         </select>
         {/*Props que necesita el paginado para funcionar*/}
         <Paginado 
