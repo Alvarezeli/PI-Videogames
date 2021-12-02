@@ -60,7 +60,7 @@ router.get("/videogames", async (req, res) => {
           name: el.name,
           id: el.id,
           background_image: el.background_image,
-          genres: el.genres.map((genre) => genre.name), //para que me devuelva todos los generos
+          genres: el.genres.map((genre) => ({name: genre.name})), //para que me devuelva todos los generos
           released: el.released,
           rating: el.rating,
           description: el.description,
@@ -103,7 +103,7 @@ router.get("/videogames", async (req, res) => {
           name: el.name,
           id: el.id,
           background_image: el.background_image,
-          genres: el.genres.map((genre) => genre.name), //para que me devuelva todos los generos
+          genres: el.genres.map((genre) => ({name: genre.name})), //para que me devuelva todos los generos
           released: el.released,
           rating: el.rating,
           description: el.description,
@@ -154,7 +154,7 @@ router.get("/videogame/:id", async (req, res) => {
             name: searchApi.data.name,
             id: searchApi.data.id,
             background_image: searchApi.data.background_image,
-            genres: searchApi.data.genres.map((genre) => genre.name), //para que me devuelva todos los generos
+            genres: searchApi.data.genres.map((genre) => ({name: genre.name})), //para que me devuelva todos los generos
             released: searchApi.data.released,
             rating: searchApi.data.rating,
             description: searchApi.data.description,
@@ -202,8 +202,8 @@ router.post("/videogame", async (req, res) => {
 
     genres.map( async genre => {
      const [newGenre, genreBooleano] = await Genre.findOrCreate({
-        where: { name : genre },
-        defaults: { name : genre}
+        where: { name : genre.name },
+        defaults: { name : genre.name }
       })
       newVideogame.addGenre(newGenre)
     })
