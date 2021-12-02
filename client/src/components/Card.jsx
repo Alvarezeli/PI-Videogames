@@ -10,7 +10,7 @@ export default function VideoCard({ name, background_image, genres }) {
       <h3>{name}</h3>
       <ul className = {styles.genrePadre}>
         {genres?.map(genre => {
-          return <li key = {Math.random(0, 10)}>{genre}</li>
+          return <li key = {Math.random(0, 10)}>{genre.name}</li>
         })}
       </ul>
     </div>
