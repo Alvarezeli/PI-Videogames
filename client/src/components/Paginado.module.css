@@ -1,0 +1,14 @@
+.paginado {
+    display: flex;
+    justify-content: center;
+
+}
+
+.number {
+    background-color: chocolate ;
+    margin: 20px;
+    padding: 10px;
+    list-style: none;
+    border-radius: 10px;
+    cursor: pointer;
+}

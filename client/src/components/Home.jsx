@@ -2,7 +2,7 @@ import { React } from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideogames, filterVideogamesByGenres } from "../actions";
+import { getVideogames, filterVideogamesByGenres, filterCreatedOrExisted, orderByAscDesc } from "../actions";
 import Card from './Card';
 import Paginado from "./Paginado";
 import styles from './Home.module.css';
@@ -12,6 +12,8 @@ export default function Home() {
   const allVideogames = useSelector((state) => state.videogames); //Esto es lo mismo que usar el mapStateToprops
   const allGenres = useSelector((state) => state.genres);
   //console.log(allGenres)
+
+  const [orden, setOrden] = useState('');
   //Vamos a intentar el paginado
   //Nos definimos varios estados locales 
   //1. Un estado con la pagina actual y otro estado que me sete la pagina actual
@@ -32,35 +34,50 @@ export default function Home() {
     dispatch(getVideogames()); //Es lo mismo que hacer el mapDispatchToprops
   }, [dispatch]); //[] lo pasas vacio por que no depende de nada
 
-  function handleClick(e) {
-    e.preventDefault();
-    dispatch(getVideogames());
-  }
+  // function handleClick(e) {
+  //   e.preventDefault();
+  //   dispatch(getVideogames());
+  // }
 
   function handleFilterGenre(e){
     dispatch(filterVideogamesByGenres(e.target.value))
+  }
+
+  function handleFilterCreateOrExisted(e){
+    dispatch(filterCreatedOrExisted(e.target.value));
+  }
+
+  function handleSortAscDes(e){
+    e.preventDefault();
+    dispatch(orderByAscDesc(e.target.value));
+    setCurrentPage(1); //Cuando hago el ordenamiento setea la pagina en la primera 
+    setOrden(`Orders ${e.target.value}`) //es un estado local vacio que utilizp para que cuando
+    //setee la pagina me modifique el estado local y se renderize 
   }
 
   return (
     <div>
       <Link to="/videogame">Crear videogame</Link>
       <h1>Necesito creatividad</h1>
-      <button onClick={(e) => {handleClick(e)}}>
+      {/* <button onClick={(e) => {handleClick(e)}}>
         Traer los videojuegos de nuevo
-      </button>
+      </button> */}
       <div>
         <select>
-          <option>Orders</option>
+        {/*----> Ordenamiento<----*/}
+          <option onChange= {(e) => handleSortAscDes(e)}>Orders</option>
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
           <option value="low_Best">Lowest to best rating</option>
           <option value="best_Low">Best to lowest rating</option>
         </select>
-        <select>
-          <option>Created o Existed</option>
+        {/*----> Filtrado por Creados o Existentes <----*/}
+        <select onChange= {(e) => handleFilterCreateOrExisted(e)}>
+          <option value="all">All</option>
           <option value="created">Created by me</option>
-          <option value="existed">Existed</option>
+          <option value="existed">From Api</option>
         </select>
+        {/*----> Filtrado por Genres <----*/}
         <select onChange= {(e) => handleFilterGenre(e)}>
          <option value="All" key='30'>All genres</option>
           {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_VIDEOGAMES, GET_GENRES, FILTER_VIDEOGAMES_BY_GENRES } from "../Constants/ActionTypes";
+import { GET_VIDEOGAMES, GET_GENRES, FILTER_VIDEOGAMES_BY_GENRES, FILTER_CREATED_OR_EXISTED, ORDER_BY_RATING } from "../Constants/ActionTypes";
 
 //acciones que vamos a realizar en el home.
 export function getVideogames() {
@@ -37,12 +37,38 @@ export function getGenres(){
 
 //Esta filtra por generos los videojuegos 
 //payload === value que nos va a llegar 
-export function filterVideogamesByGenres(genre){
+export function filterVideogamesByGenres(payload){
   return {
     type: FILTER_VIDEOGAMES_BY_GENRES,
-    payload : genre //Adventure
+    payload : payload //son los genre que tengo --->//Adventure
   }
 }
+
+export function filterCreatedOrExisted(payload){
+  return {
+    type: FILTER_CREATED_OR_EXISTED,
+    payload
+  }
+}
+
+export function orderByAscDesc(payload){
+  return{
+    type: ORDER_BY_RATING,
+    payload: payload
+  }
+}
+
+
+//////// Action para la barra de búsqueda ///////
+// export function getNameVideogames(name){
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get('http://localhost:3001/videogames?name=' + name)
+//     } catch (error) {
+      
+//     }
+//   }
+// }
 
 /*TODO  LO QUE ES LOGICA TRATA DE NO HACERLO EN LAS ACCIONES, TRATA DE DEJAR LA MENOR 
 LOGICA ACA  Y SIEMPRE HACERLA EN EL REDUCER Y EN EL COMPONENTE */
