@@ -208,12 +208,6 @@ router.post("/videogame", async (req, res) => {
       newVideogame.addGenre(newGenre)
     })
 
-    // let genreDb = await Genre.findAll({
-    //   where: { name: genres },
-    // });
-    // //Hacemos la vinculacion
-    // newVideogame.addGenre(genreDb);
-
     videogameCreated
       ? res.send("El videojuego fue creado con exito")
       : res.send("El videojuego ya ha sido creado");

@@ -59,7 +59,7 @@ export function orderByAscDesc(payload){
 }
 
 
-//////// Action para la barra de búsqueda ///////
+// //////// Action para la barra de búsqueda ///////
 // export function getNameVideogames(name){
 //   return async function (dispatch) {
 //     try {
