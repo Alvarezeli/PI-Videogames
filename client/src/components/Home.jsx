@@ -11,6 +11,7 @@ import {
 import Card from "./Card";
 import Paginado from "./Paginado";
 import styles from "./Home.module.css";
+import SearchBar from "./SearchBar";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ export default function Home() {
   }
 
   function handleSort(e) {
-    console.log("por que no funcionas, quieres verme llorar?");
+    console.log('Soy el console.log de handleSort',"por que no funcionas, quieres verme llorar?");
     e.preventDefault();
     dispatch(orderByAscDesc(e.target.value));
     setCurrentPage(1); //Cuando hago el ordenamiento setea la pagina en la primera
@@ -62,6 +63,7 @@ export default function Home() {
     <div>
       <Link to="/videogame">Crear videogame</Link>
       <h1>Videogames App</h1>
+      <SearchBar/>
       <div>
         {/*----> Ordenamiento<----*/}
         <select onChange={(e) => handleSort(e)}>

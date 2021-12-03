@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_VIDEOGAMES, GET_GENRES, FILTER_VIDEOGAMES_BY_GENRES, FILTER_CREATED_OR_EXISTED, ORDER_BY_RATING } from "../Constants/ActionTypes";
+import { GET_VIDEOGAMES, GET_GENRES, FILTER_VIDEOGAMES_BY_GENRES, FILTER_CREATED_OR_EXISTED, ORDER_BY_RATING,  GET_NAME_VIDEOGAMES } from "../Constants/ActionTypes";
 
 //acciones que vamos a realizar en el home.
 export function getVideogames() {
@@ -35,6 +35,13 @@ export function getGenres(){
 //   }
 // }
 
+export function postVideogames(payload){
+  return async function(dispatch){
+    const resApi = await axios.post('http://localhost:3001/videogame', payload);
+    console.log('Soy el console de resApi', resApi)
+    return resApi;
+  }
+}
 //Esta filtra por generos los videojuegos 
 //payload === value que nos va a llegar 
 export function filterVideogamesByGenres(payload){
@@ -60,15 +67,19 @@ export function orderByAscDesc(payload){
 
 
 // //////// Action para la barra de búsqueda ///////
-// export function getNameVideogames(name){
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get('http://localhost:3001/videogames?name=' + name)
-//     } catch (error) {
-      
-//     }
-//   }
-// }
+export function getNameVideogames(name){
+  return async function (dispatch) {
+    try {
+      var json = await axios.get('http://localhost:3001/videogames?name=' + name)
+      return dispatch ({
+        type: GET_NAME_VIDEOGAMES,
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 /*TODO  LO QUE ES LOGICA TRATA DE NO HACERLO EN LAS ACCIONES, TRATA DE DEJAR LA MENOR 
 LOGICA ACA  Y SIEMPRE HACERLA EN EL REDUCER Y EN EL COMPONENTE */

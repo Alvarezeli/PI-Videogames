@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import { useDispatch } from 'react-redux';
 import { getGenres } from './actions/index';
 import { useEffect } from "react";
+import VideogameCreate from './components/VideogameCreate';
+import Details from './components/Details';
 
 
 
@@ -22,6 +24,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/videogame" component={VideogameCreate} />
+          <Route exact path="/home/:id" component={Details} />
         </Switch>
       </div>
     </BrowserRouter>

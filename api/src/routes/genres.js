@@ -6,9 +6,6 @@ const { API_KEY } = process.env;
 const { Videogame, Genre, videogame_genre } = require('../db.js');
 const router = Router();
 
-
-
-
 ////////END POINT///////
 // GET https://api.rawg.io/api/genres
 
