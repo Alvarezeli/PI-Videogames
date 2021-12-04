@@ -4,13 +4,15 @@ import {
   GET_GENRES,
   FILTER_CREATED_OR_EXISTED,
   ORDER_BY_RATING,
-  GET_NAME_VIDEOGAMES
+  GET_NAME_VIDEOGAMES,
+  GET_DETAIL
 } from "../Constants/ActionTypes";
 
 const initialState = {
   videogames: [],
   genres: [],
   allVideogames: [],
+  detail: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -45,7 +47,8 @@ function rootReducer(state = initialState, action) {
     case 'POST_VIDEOGAME':
       return {
         ...state,
-      }
+        detail: action.payload
+      };
 
     case GET_GENRES:
       return {
@@ -63,6 +66,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         videogames:
           action.payload === "all" ? state.allVideogames : createdOrExisted,
+      };
+
+    case GET_DETAIL:
+      return {
+        ...state,
+        detail: action.payload
       };
 
     case ORDER_BY_RATING:

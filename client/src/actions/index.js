@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_VIDEOGAMES, GET_GENRES, FILTER_VIDEOGAMES_BY_GENRES, FILTER_CREATED_OR_EXISTED, ORDER_BY_RATING,  GET_NAME_VIDEOGAMES } from "../Constants/ActionTypes";
+import { GET_VIDEOGAMES, GET_GENRES, FILTER_VIDEOGAMES_BY_GENRES, FILTER_CREATED_OR_EXISTED, ORDER_BY_RATING,  GET_NAME_VIDEOGAMES, GET_DETAIL } from "../Constants/ActionTypes";
 
 //acciones que vamos a realizar en el home.
 export function getVideogames() {
@@ -68,6 +68,7 @@ export function orderByAscDesc(payload){
 
 // //////// Action para la barra de búsqueda ///////
 export function getNameVideogames(name){
+  console.log('soy el console.log de name', name)
   return async function (dispatch) {
     try {
       var json = await axios.get('http://localhost:3001/videogames?name=' + name)
@@ -76,7 +77,21 @@ export function getNameVideogames(name){
         payload: json.data
       })
     } catch (error) {
-      console.log(error)
+      alert(error)
+    }
+  }
+};
+
+export function getDetail(id){
+  return async function(dispatch) {
+    try {
+      var json = await axios.get('http://localhost:3001/videogame/' + id);
+      return dispatch({
+        type: GET_DETAIL,
+        payload: json.data
+      })
+    } catch(error) {
+        console.log(error)
     }
   }
 }

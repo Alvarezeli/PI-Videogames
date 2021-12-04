@@ -13,6 +13,8 @@ import Paginado from "./Paginado";
 import styles from "./Home.module.css";
 import SearchBar from "./SearchBar";
 
+
+
 export default function Home() {
   const dispatch = useDispatch();
   const allVideogames = useSelector((state) => state.videogames); //Esto es lo mismo que usar el mapStateToprops
@@ -93,7 +95,7 @@ export default function Home() {
           })}
         </select>
         <div className={styles.cardPadre}>
-          {currentVideogames?.map((v) => {
+          {currentVideogames ? currentVideogames.map((v) => {
             // console.log(v)
             return (
               <>
@@ -107,7 +109,10 @@ export default function Home() {
                 </Link>
               </>
             );
-          })}
+          }) : 
+          <div>Loading...</div>
+          
+          }
         </div>
         {/*Props que necesita el paginado para funcionar*/}
         <Paginado 

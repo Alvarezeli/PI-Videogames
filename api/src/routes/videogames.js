@@ -29,7 +29,8 @@ router.get("/videogames", async (req, res) => {
   try {
     //Si me llega por query
     if (req.query.name) {
-      //console.log(req.query.name)
+      try {
+        //console.log(req.query.name)
       //Consultamos en la base de datos
       let datadb = await Videogame.findAll({
         where: {
@@ -51,7 +52,7 @@ router.get("/videogames", async (req, res) => {
       //console.log(count)
       let rest = 15 - count;
       let dataApi = await axios.get(
-        `https://api.rawg.io/api/games?search=${req.query.name}&key=${API_KEY}&page=${rest}`
+        `https://api.rawg.io/api/games?search=${req.query.name}&key=${API_KEY}&page_size=${rest}`
       );
       const { results } = dataApi.data;
       //Mapeamos los datos de result para que devuelva los datos que realmente necesitamos
@@ -70,9 +71,12 @@ router.get("/videogames", async (req, res) => {
 
       //Union de los datos
       let dataAll = [...datadb, ...arrDataApi];
-      return dataAll.length
-        ? res.json(dataAll)
-        : res.status(404).send("Que más quieres de mi");
+      return dataAll.length && res.json(dataAll)
+     
+      } catch (error) {
+        res.sendStatus(404);
+      }
+      
     }
 
     //Si no llega por query
@@ -139,7 +143,12 @@ router.get("/videogame/:id", async (req, res) => {
     //console.log('Llego por params:', typeof(id))
     // Busca en la base de datos si tiene ese id
     if (id) {
-      const gameDb = await Videogame.findByPk(id);
+      const gameDb = await Videogame.findByPk(id, {
+        include : [{
+          model : Genre, 
+          through : {attributes : []}
+        }] 
+      });
       if (gameDb) {
         return res.json(gameDb);
       } else {
@@ -188,9 +197,9 @@ router.post("/videogame", async (req, res) => {
 
   try {
     const [newVideogame, videogameCreated] = await Videogame.findOrCreate({
-      where: { name: name.toLowerCase() },
+      where: { name: name },
       defaults: {
-        name: name.toLowerCase(),
+        name: name,
         description,
         released,
         rating,
@@ -199,11 +208,11 @@ router.post("/videogame", async (req, res) => {
         createdInDb,
       }
     });
-
+    console.log(genres)
     genres.map( async genre => {
      const [newGenre, genreBooleano] = await Genre.findOrCreate({
-        where: { name : genre.name },
-        defaults: { name : genre.name }
+        where: { name : genre},
+        defaults: { name : genre}
       })
       newVideogame.addGenre(newGenre)
     })

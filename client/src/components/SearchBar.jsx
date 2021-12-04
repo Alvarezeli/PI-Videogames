@@ -10,18 +10,21 @@ export default function SearchBar(){
     function handleInputChange(e){
         e.preventDefault()
         setName(e.target.value)
-       // console.log(name)
-       //setName('');
+       // console.log(name) 
     }
 
     function handleSubmit(e){
         e.preventDefault();
         dispatch(getNameVideogames(name))
-    }
+        setName('')
+        document.getElementById('search').value = '';
+        document.getElementById('search').focus();
+    };
 
     return(
         <div>
             <input 
+              id = 'search'
               onChange = {handleInputChange}
               type = 'text'
               placeholder = 'Buscar...'

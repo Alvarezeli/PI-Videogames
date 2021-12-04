@@ -3,18 +3,34 @@ import {useState, useEffect} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres, postVideogames } from "../actions";
+const platforms = require('../Platforms.data/platforms.json')
+
+function validate(input){
+    let errors = {};
+    if (!input.name) {
+        errors.name = 'Se requiere un nombre';
+    } else if(!input.description){
+        errors.description = 'Se requiere una descripcion'
+    } else if(!input.rating){
+        errors.rating = 'Se requiere que un puntaje del juego'
+    } else if(!input.released){
+        errors.released = 'Se requiere una fecha de lanzamiento del juego'
+    } 
+    return errors
+}
 
 export default function VideogameCreate(){
     const dispatch = useDispatch();
     const genres = useSelector((state) => state.genres);
     const history = useHistory();
+    const [errors, setError] = useState({});
 
     const[input, setInput] = useState({
         name: '',
         description: '',
         released: '',
         background_image: '',
-        rating: '',
+        rating: 0,
         platforms: [],
         genres: [],
     });
@@ -25,13 +41,24 @@ export default function VideogameCreate(){
             [e.target.name] : e.target.value //Agregale el target.value de lo que esta modificando
             //modifica algo y llena el estado
         })
-        console.log('SOY EL INPUT', input)
+       //Setea el estado local errors  
+       setError(validate({
+           ...input,
+           [e.target.name] : e.target.value 
+       }))
     };
 
-    function handleSelect(e){
+    function handleSelectGenre(e){
         setInput({
             ...input,
             genres: [...input.genres, e.target.value]
+        })
+    };
+
+    function handleSelectPlatforms(e){
+        setInput({
+            ...input,
+            platforms: [...input.platforms, e.target.value]
         })
     };
 
@@ -45,12 +72,26 @@ export default function VideogameCreate(){
             description: '',
             released: '',
             background_image: '',
-            rating: '',
+            rating: 0,
             platforms: [],
             genres: [],
         })
         history.push('/home') //Esto redirige
     };
+
+    function handleDelectGenre(element){
+        setInput({
+            ...input,
+            genres: input.genres.filter(gen => gen !== element)
+        })
+    }
+
+    function handleDelectPlatforms(pla){
+        setInput({
+            ...input,
+            platforms: input.platforms.filter(pl => pl !== pla)
+        })
+    }
 
     return(
         <div>
@@ -61,24 +102,36 @@ export default function VideogameCreate(){
                    <label>Name</label>
                    <br/>
                    <input type='text' value={input.name} name='name' onChange={handleChange}/>
+                   {errors.name && (
+                       <p>{errors.name}</p>
+                   )}
                </div>
                <br/>
                <div>
                    <label>Description</label>
                    <br/>
                    <input type='text' value={input.description} name='description' onChange={handleChange}/>
+                   {errors.description && (
+                       <p>{errors.description}</p>
+                   )}
                </div>
                <br/>
                <div>
-                   <label>Rating</label>
+                   <label>Rating ({input.rating})</label>
                    <br/>
-                   <input type='text' value={input.rating} name='rating' onChange={handleChange}/>
+                   <input type='range' max='5' value={input.rating} name='rating' onChange={handleChange}/> 
+                   {errors.rating && (
+                       <p>{errors.rating}</p>
+                   )}
                </div>
                <br/>
                <div>
                    <label>Released</label>
                    <br/>
                    <input type='text' value={input.released} name='released' onChange={handleChange}/>
+                   {errors.released && (
+                       <p>{errors.released}</p>
+                   )}
                </div>
                <br/>
                <div>
@@ -87,17 +140,18 @@ export default function VideogameCreate(){
                    <input type='text' value={input.background_image} name='background_image' onChange={(e)=>handleChange(e)}/>
                </div>
                <br/>
-               <div>
-                   <label>Platforms</label>
-                   <br/>
-                   <label><input type='checkbox' name='PlayStation 5' value='PlayStation 5'/>PlayStation 5</label>
-                   <label><input type='checkbox' name='PlayStation 4' value='PlayStation 4'/>PlayStation 4</label>
-                   <label><input type='checkbox' name='PlayStation 3' value='PlayStation 3'/>PlayStation 3</label>
-                   <label><input type='checkbox' name='PlayStation 2' value='PlayStation 2'/>PlayStation 2</label>
-                   <label><input type='checkbox' name='PlayStation' value='PlayStation'/>PlayStation </label>
-               </div>
+               <select  onChange={(e)=> handleSelectPlatforms(e)}>
+                   <option>
+                       Platforms
+                   </option>
+                   {platforms.map( platform => {
+                       return(
+                           <option value={platform.name} key={platform.key}>{platform.name}</option>
+                       );
+                   })};
+               </select>
                <br/>
-               <select onChange={(e)=> handleSelect(e)}>
+               <select onChange={(e)=> handleSelectGenre(e)}>
                <option value="choose" key="45">
                 Choose genre
                </option>
@@ -107,10 +161,24 @@ export default function VideogameCreate(){
                    );
                    })};
                </select>
-               <ul><li>{input.genres.map(el => el + ',')}</li></ul>
+
                <br/>
              <button type = 'submit'>Crear videojuego</button>
            </form>
+
+           {input.genres.map(element => 
+            <div>
+            <p>{element}</p>    
+            <button onClick={()=>handleDelectGenre(element)}>X</button>
+            </div>
+            )}
+
+            {input.platforms.map(pla => 
+            <div>
+            <p>{pla}</p>    
+            <button onClick={()=>handleDelectPlatforms(pla)} >X</button>
+            </div>
+            )}
         </div>
     )
 
