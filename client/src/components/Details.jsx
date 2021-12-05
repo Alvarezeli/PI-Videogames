@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import { getDetail } from "../actions";
 import { useEffect } from "react";
+import NavBar from "./NavBar";
+import styles from './Details.module.css'
 
 export default function Details(props){
  console.log('SOY EL CONSOLE.LOG DE PROPS', props)
@@ -17,10 +19,11 @@ export default function Details(props){
 return(
     <div> 
 
+        
+        <NavBar/>
         <Link to='/home'>
-            <button>Volver</button>
+            <button className={styles.buttonVolver}>Volver</button>
         </Link>
-    
         {
             detailVideogame.name ?
             <div>

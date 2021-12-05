@@ -27,9 +27,9 @@ export default function SearchBar(){
               id = 'search'
               onChange = {handleInputChange}
               type = 'text'
-              placeholder = 'Buscar...'
+              placeholder = 'Search & discover...'
             />
-            <button type = 'submit' onClick={handleSubmit}>Buscar</button>
+            <button type = 'submit' onClick={handleSubmit}>Search</button>
         </div>
     )
 };

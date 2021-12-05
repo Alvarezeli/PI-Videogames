@@ -11,7 +11,9 @@ import {
 import Card from "./Card";
 import Paginado from "./Paginado";
 import styles from "./Home.module.css";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
+import NavBar from "./NavBar";
+
 
 
 
@@ -63,9 +65,11 @@ export default function Home() {
 
   return (
     <div>
-      <Link to="/videogame">Crear videogame</Link>
+      <NavBar/>
+      {/* <Link to= '/'><button>Volver</button></Link>
+      <Link to="/videogame">Crear videogame</Link> */}
       <h1>Videogames App</h1>
-      <SearchBar/>
+      {/* <SearchBar/> */}
       <div>
         {/*----> Ordenamiento<----*/}
         <select onChange={(e) => handleSort(e)}>

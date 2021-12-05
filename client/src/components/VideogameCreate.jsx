@@ -2,8 +2,12 @@ import React from "react";
 import {useState, useEffect} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import NavBar from "./NavBar";
 import { getGenres, postVideogames } from "../actions";
+import styles from './VideogameCreate.module.css';
 const platforms = require('../Platforms.data/platforms.json')
+
+
 
 function validate(input){
     let errors = {};
@@ -95,13 +99,14 @@ export default function VideogameCreate(){
 
     return(
         <div>
-           <Link to = '/home'> <button>Volver</button></Link>
+            <NavBar/>
+           <Link to = '/home'> <button className={styles.buttonVolver}>Volver</button></Link>
            <h1>Crea tu videojuego</h1>
            <form onSubmit={(e) => handleSubmit(e)}>
                <div>
                    <label>Name</label>
                    <br/>
-                   <input type='text' value={input.name} name='name' onChange={handleChange}/>
+                   <input type='text' placeholder='Nombre del videojuego...' value={input.name} name='name' onChange={handleChange}/>
                    {errors.name && (
                        <p>{errors.name}</p>
                    )}
@@ -110,7 +115,7 @@ export default function VideogameCreate(){
                <div>
                    <label>Description</label>
                    <br/>
-                   <input type='text' value={input.description} name='description' onChange={handleChange}/>
+                   <input type='text' placeholder='Acerca del videojuego..' value={input.description} name='description' onChange={handleChange}/>
                    {errors.description && (
                        <p>{errors.description}</p>
                    )}
@@ -128,7 +133,7 @@ export default function VideogameCreate(){
                <div>
                    <label>Released</label>
                    <br/>
-                   <input type='text' value={input.released} name='released' onChange={handleChange}/>
+                   <input type='text' placeholder='Fecha de lanzamiento...' value={input.released} name='released' onChange={handleChange}/>
                    {errors.released && (
                        <p>{errors.released}</p>
                    )}
