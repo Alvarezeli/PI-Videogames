@@ -15,6 +15,7 @@
     list-style: none;
 }
 
-/* .imgCard{
-    border: 1px solid cornflowerblue;
-}; */
+.imgCard{
+    width: 200px;
+    height: 100px;
+};

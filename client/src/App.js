@@ -1,12 +1,12 @@
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
-import Home from "./components/Home";
+import LandingPage from '../../client/src/components/LandingPage/LandingPage';
+import Home from "../../client/src/components/Home/Home";
 import { useDispatch } from 'react-redux';
-import { getGenres } from './actions/index';
+import { getGenres } from '../src/actions/index';
 import { useEffect } from "react";
-import VideogameCreate from './components/VideogameCreate';
-import Details from './components/Details';
+import VideogameCreate from '../../client/src/components/VideogameCreate/VideogameCreate';
+import Details from '../../client/src/components/Details/Details';
 
 
 function App() {

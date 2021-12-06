@@ -23,9 +23,6 @@ module.exports = (sequelize) => {
     },
     rating: {
       type: DataTypes.DECIMAL,
-      // validate: {
-      //   isDecimal: true,        
-      // }
     },
     platforms: {
       type: DataTypes.ARRAY(DataTypes.STRING),
@@ -34,7 +31,7 @@ module.exports = (sequelize) => {
     background_image: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: 'https://pbs.twimg.com/profile_images/1462879563692793860/4rlkGctz_400x400.jpg'
+      defaultValue: 'https://giphy.com/stickers/bmo-O0HLp5POTssoM'
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import { getDetail } from "../actions";
+import { getDetail } from "../../actions";
 import { useEffect } from "react";
-import NavBar from "./NavBar";
-import Button from "./Button";
+import NavBar from "../NavBar/NavBar";
+import Button from "../Buttons/Button";
 // import styles from './Details.module.css'
 
 export default function Details(props){
@@ -41,4 +41,3 @@ return(
     </div>
 )
 }
-//Description: <p dangerouslySetInnerHTML={{__html: videogame.description,}}/>

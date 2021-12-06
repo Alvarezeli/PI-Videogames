@@ -2,18 +2,18 @@ import React from "react";
 import {useState, useEffect} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "./NavBar";
-import { getGenres, postVideogames } from "../actions";
+import NavBar from "../NavBar/NavBar";
+import { postVideogames } from "../../actions";
 //import styles from './VideogameCreate.module.css';
-import Button from "./Button";
-const platforms = require('../Platforms.data/platforms.json')
+import Button from "../Buttons/Button";
+const platforms = require('../../Platforms.data/platforms.json')
 
 
-
+///---> VALIDACION DE ERRORES <---///
 function validate(input){
     let errors = {};
     if (!input.name) {
-        errors.name = 'Se requiere un nombre';
+        errors.name = 'Se require un nombre';
     } else if(!input.description){
         errors.description = 'Se requiere una descripcion'
     } else if(!input.rating){
@@ -24,12 +24,12 @@ function validate(input){
     return errors
 }
 
+///---> FORMULARIO <---///
 export default function VideogameCreate(){
     const dispatch = useDispatch();
     const genres = useSelector((state) => state.genres);
     const history = useHistory();
     const [errors, setError] = useState({});
-
     const[input, setInput] = useState({
         name: '',
         description: '',
@@ -69,7 +69,7 @@ export default function VideogameCreate(){
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log(input)
+       // console.log(input)
         dispatch(postVideogames(input))
         alert('Personaje creado')
         setInput({
@@ -77,7 +77,7 @@ export default function VideogameCreate(){
             description: '',
             released: '',
             background_image: '',
-            rating: 0,
+            rating: '',
             platforms: [],
             genres: [],
         })
@@ -100,7 +100,7 @@ export default function VideogameCreate(){
 
     return(
         <div>
-            <NavBar/>
+           <NavBar/>
            <Link to = '/home'><Button>Volver</Button></Link>
            <h1>Crea tu videojuego</h1>
            <form onSubmit={(e) => handleSubmit(e)}>
@@ -125,7 +125,7 @@ export default function VideogameCreate(){
                <div>
                    <label>Rating ({input.rating})</label>
                    <br/>
-                   <input type='range' max='5' value={input.rating} name='rating' onChange={handleChange}/> 
+                   <input placeholder='Rating 0-5' type='number' min='0' max='5' value={input.rating} name='rating' onChange={handleChange}/> 
                    {errors.rating && (
                        <p>{errors.rating}</p>
                    )}

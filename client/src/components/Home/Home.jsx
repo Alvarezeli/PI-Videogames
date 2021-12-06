@@ -7,13 +7,12 @@ import {
   filterVideogamesByGenres,
   filterCreatedOrExisted,
   orderByAscDesc,
-} from "../actions";
-import Card from "./Card";
-import Paginado from "./Paginado";
+} from "../../actions";
+import Card from "../Card/Card";
+import Paginado from "../Paginado/Paginado";
 import styles from "./Home.module.css";
-// import SearchBar from "./SearchBar";
-import NavBar from "./NavBar";
-import Button from './Button';
+import NavBar from "../NavBar/NavBar";
+import Button from '../Buttons/Button';
 
 
 
@@ -71,6 +70,10 @@ export default function Home() {
 
   return (
     <div>
+      {currentVideogames.length === 0} ?
+       <div>
+         <img src='https://giphy.com/gifs/today-loading-icon-VX7yEoXAFf8as'/>
+       </div> :
       <NavBar/>
       <h1>Videogames App</h1>
       <div>
@@ -118,8 +121,7 @@ export default function Home() {
               </>
             );
           }) : 
-          <div>Loading...</div>
-          
+          <div>Loading...</div> 
           }
         </div>
         {/*Props que necesita el paginado para funcionar*/}
