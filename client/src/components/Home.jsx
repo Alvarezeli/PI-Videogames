@@ -13,6 +13,7 @@ import Paginado from "./Paginado";
 import styles from "./Home.module.css";
 // import SearchBar from "./SearchBar";
 import NavBar from "./NavBar";
+import Button from './Button';
 
 
 
@@ -50,6 +51,11 @@ export default function Home() {
     dispatch(filterVideogamesByGenres(e.target.value));
   }
 
+  function handleClickReset(e) {
+    e.preventDefault(); 
+    dispatch(getVideogames()); //me despache la accion y resetea todo y me trae todo de nuevo
+  }
+
   function handleFilterCreateOrExisted(e) {
     dispatch(filterCreatedOrExisted(e.target.value));
   }
@@ -66,10 +72,7 @@ export default function Home() {
   return (
     <div>
       <NavBar/>
-      {/* <Link to= '/'><button>Volver</button></Link>
-      <Link to="/videogame">Crear videogame</Link> */}
       <h1>Videogames App</h1>
-      {/* <SearchBar/> */}
       <div>
         {/*----> Ordenamiento<----*/}
         <select onChange={(e) => handleSort(e)}>
@@ -98,6 +101,7 @@ export default function Home() {
             );
           })}
         </select>
+        <Button onClick={(e) => { handleClickReset(e)}}> Reset </Button>
         <div className={styles.cardPadre}>
           {currentVideogames ? currentVideogames.map((v) => {
             // console.log(v)

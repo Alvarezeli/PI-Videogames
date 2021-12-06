@@ -4,7 +4,8 @@ import {Link, useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "./NavBar";
 import { getGenres, postVideogames } from "../actions";
-import styles from './VideogameCreate.module.css';
+//import styles from './VideogameCreate.module.css';
+import Button from "./Button";
 const platforms = require('../Platforms.data/platforms.json')
 
 
@@ -100,7 +101,7 @@ export default function VideogameCreate(){
     return(
         <div>
             <NavBar/>
-           <Link to = '/home'> <button className={styles.buttonVolver}>Volver</button></Link>
+           <Link to = '/home'><Button>Volver</Button></Link>
            <h1>Crea tu videojuego</h1>
            <form onSubmit={(e) => handleSubmit(e)}>
                <div>

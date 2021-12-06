@@ -2,17 +2,23 @@
 
 body {
   font-family: 'Lato', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   background-color: var(--body-color);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  color: var(--primary-font-color);
 }
 
 :root {
   --body-color: #222831;
+  --primary-font-color: #E6DDC6;
+}
+
+body{
+  background-image: url('./assets/lara.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+  position: relative;
+  background-attachment: fixed;
+  background-position: 25% 25%;
 }
 
