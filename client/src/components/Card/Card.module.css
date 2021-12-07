@@ -1,14 +1,24 @@
 .divCard{
     margin: 20px;
+    height: 310px;
+    border-radius: 1rem;
+    padding: 6px;
+    backdrop-filter: blur(25px);
 
 };
+
 
 .genrePadre{
     display: flex;
     justify-content: space-between;
-    width: 80%;
-    border: 1px solid black;
-    
+}
+
+.titleCard{
+    font-family: 'Passion One', cursive;
+    font-size: 30px;
+    font-weight: normal;
+    margin: 8px;
+    letter-spacing: 1px;
 }
 
 .genrePadre li{
@@ -16,6 +26,8 @@
 }
 
 .imgCard{
-    width: 200px;
-    height: 100px;
+    width: 280px;
+    height: 190px;
+    border-radius: 1rem;
+
 };

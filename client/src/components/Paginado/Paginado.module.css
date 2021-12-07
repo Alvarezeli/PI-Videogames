@@ -5,16 +5,22 @@
 }
 
 .number {
-    background-color: cadetblue ;
+    background-color: #F6830F;
     margin: 20px;
     padding: 10px;
     list-style: none;
     border-radius: 10px;
     cursor: pointer;
+    width: 20px;
+    height: 22.5px;
+    font-family: 'Passion One', cursive;
+    font-size: 25px;
+    font-weight: lighter;
+    outline: none;
 }
 
 .number:hover{
     background: gray;
-    width: 15px;
-    height: 15px;
+    width: 27px;
+    height: 32px;
 }

@@ -13,8 +13,7 @@ import Paginado from "../Paginado/Paginado";
 import styles from "./Home.module.css";
 import NavBar from "../NavBar/NavBar";
 import Button from '../Buttons/Button';
-
-
+//import Loading from "../Loading/Loading";
 
 
 export default function Home() {
@@ -22,6 +21,8 @@ export default function Home() {
   const allVideogames = useSelector((state) => state.videogames); //Esto es lo mismo que usar el mapStateToprops
   const allGenres = useSelector((state) => state.genres);
   //console.log(allGenres)
+
+  /* ---> PAGINADO <--- */
 
   const [orden, setOrden] = useState("");
   //Vamos a intentar el paginado
@@ -44,7 +45,9 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getVideogames()); //Es lo mismo que hacer el mapDispatchToprops
-  }, [dispatch]); //[] lo pasas vacio por que no depende de nada
+  }, [dispatch]); 
+
+  /* ---> HANDLERS <--- */
 
   function handleFilterGenre(e) {
     dispatch(filterVideogamesByGenres(e.target.value));
@@ -60,7 +63,7 @@ export default function Home() {
   }
 
   function handleSort(e) {
-    console.log('Soy el console.log de handleSort',"por que no funcionas, quieres verme llorar?");
+   // console.log('Soy el console.log de handleSort',"por que no funcionas, quieres verme llorar?");
     e.preventDefault();
     dispatch(orderByAscDesc(e.target.value));
     setCurrentPage(1); //Cuando hago el ordenamiento setea la pagina en la primera
@@ -70,12 +73,8 @@ export default function Home() {
 
   return (
     <div>
-      {currentVideogames.length === 0} ?
-       <div>
-         <img src='https://giphy.com/gifs/today-loading-icon-VX7yEoXAFf8as'/>
-       </div> :
       <NavBar/>
-      <h1>Videogames App</h1>
+      <h1 className={styles.title}>Videogames App</h1>
       <div>
         {/*----> Ordenamiento<----*/}
         <select onChange={(e) => handleSort(e)}>

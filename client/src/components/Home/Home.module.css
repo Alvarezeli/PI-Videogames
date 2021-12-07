@@ -1,9 +1,16 @@
 .cardPadre{
     display: flex;
     flex-wrap: wrap;
-    padding: 50px;
-    margin: 20px;
+    padding: 30px;
+    margin: 10px;
     justify-content: center;
+}
+
+.title{ 
+    font-family: 'Bebas Neue', cursive;
+    font-size: 4vw;
+    letter-spacing: 3.5px;
+    margin: 10px;
 }
 
 .btn {

@@ -177,9 +177,9 @@ export default function VideogameCreate(){
            </form>
 
            {input.genres.map(element => 
-            <div>
+            <div className={styles.cardGenre}>
             <div>{element}</div>    
-            <button onClick={()=>handleDelectGenre(element)}>X</button>
+            <button onClick={()=>handleDelectGenre(element)} className={styles.btnGenre}>X</button>
             </div>
             )}
 
