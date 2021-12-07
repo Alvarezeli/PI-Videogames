@@ -4,8 +4,9 @@ import {Link, useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar/NavBar";
 import { postVideogames } from "../../actions";
-//import styles from './VideogameCreate.module.css';
+import styles from './VideogameCreate.module.css';
 import Button from "../Buttons/Button";
+
 const platforms = require('../../Platforms.data/platforms.json')
 
 
@@ -22,7 +23,7 @@ function validate(input){
         errors.released = 'Se requiere una fecha de lanzamiento del juego'
     } 
     return errors
-}
+};
 
 ///---> FORMULARIO <---///
 export default function VideogameCreate(){
@@ -84,6 +85,7 @@ export default function VideogameCreate(){
         history.push('/home') //Esto redirige
     };
 
+    /// ---> BOTON DE ELIMINAR <--- ///
     function handleDelectGenre(element){
         setInput({
             ...input,
@@ -98,54 +100,56 @@ export default function VideogameCreate(){
         })
     }
 
+    /// ---> INICIO DE FORM <--- ///    
     return(
-        <div>
+        <div className={styles.divPadre}>
            <NavBar/>
            <Link to = '/home'><Button>Volver</Button></Link>
-           <h1>Crea tu videojuego</h1>
-           <form onSubmit={(e) => handleSubmit(e)}>
+           <h1 className={styles.tittle}>Create your videogame</h1>
+           <form onSubmit={(e) => handleSubmit(e)} className={styles.divForm}>
                <div>
                    <label>Name</label>
                    <br/>
-                   <input type='text' placeholder='Nombre del videojuego...' value={input.name} name='name' onChange={handleChange}/>
+                   <input className={errors.name && 'danger'} type='text' placeholder='Nombre del videojuego...' value={input.name} name='name' onChange={handleChange}/>
                    {errors.name && (
-                       <p>{errors.name}</p>
+                       <p className='danger'>{errors.name}</p>
                    )}
                </div>
                <br/>
                <div>
                    <label>Description</label>
                    <br/>
-                   <input type='text' placeholder='Acerca del videojuego..' value={input.description} name='description' onChange={handleChange}/>
+                   <input className={errors.description && 'danger'} type='text' placeholder='Acerca del videojuego..' value={input.description} name='description' onChange={handleChange}/>
                    {errors.description && (
-                       <p>{errors.description}</p>
+                       <p className='danger'>{errors.description}</p>
                    )}
                </div>
                <br/>
                <div>
-                   <label>Rating ({input.rating})</label>
+                   <label>Rating</label>
                    <br/>
-                   <input placeholder='Rating 0-5' type='number' min='0' max='5' value={input.rating} name='rating' onChange={handleChange}/> 
+                   <input className={errors.rating && 'danger'} placeholder='Rating 0-5' type='number' min='0' max='5' value={input.rating} name='rating' onChange={handleChange}/> 
                    {errors.rating && (
-                       <p>{errors.rating}</p>
+                       <p className='danger'>{errors.rating}</p>
                    )}
                </div>
                <br/>
                <div>
                    <label>Released</label>
                    <br/>
-                   <input type='text' placeholder='Fecha de lanzamiento...' value={input.released} name='released' onChange={handleChange}/>
+                   <input className={errors.released && 'danger'} type='date' placeholder='Fecha de lanzamiento...' value={input.released} name='released' onChange={handleChange}/>
                    {errors.released && (
-                       <p>{errors.released}</p>
+                       <p className='danger'>{errors.released}</p>
                    )}
                </div>
                <br/>
                <div>
                    <label>Image</label>
                    <br/>
-                   <input type='text' value={input.background_image} name='background_image' onChange={(e)=>handleChange(e)}/>
+                   <input type='text' value={input.background_image} name='background_image' onChange={(e)=>handleChange(e)} required/>
                </div>
                <br/>
+               <div className={styles.selects}>
                <select  onChange={(e)=> handleSelectPlatforms(e)}>
                    <option>
                        Platforms
@@ -167,22 +171,22 @@ export default function VideogameCreate(){
                    );
                    })};
                </select>
-
+                </div>
                <br/>
-             <button type = 'submit'>Crear videojuego</button>
+             <button className={styles.btnCrear} type = 'submit'>Crear videojuego</button> 
            </form>
 
            {input.genres.map(element => 
             <div>
-            <p>{element}</p>    
+            <div>{element}</div>    
             <button onClick={()=>handleDelectGenre(element)}>X</button>
             </div>
             )}
 
             {input.platforms.map(pla => 
-            <div>
-            <p>{pla}</p>    
-            <button onClick={()=>handleDelectPlatforms(pla)} >X</button>
+            <div className={styles.cardPlat}>
+            <div>{pla}</div>    
+            <button onClick={()=>handleDelectPlatforms(pla)} className={styles.btnPla}>x</button>
             </div>
             )}
         </div>

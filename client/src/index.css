@@ -8,7 +8,7 @@ body {
 
 :root {
   --body-color: #222831;
-  --primary-font-color: #E6DDC6;
+  --primary-font-color: #E0DEDE;
 }
 
 body{
@@ -22,3 +22,22 @@ body{
   background-position: 25% 25%;
 }
 
+p.danger {
+  color: red;
+  font-size: 15px;
+  font-weight: normal;
+  margin: 5px;
+}
+
+input.danger {
+  border: 2px solid red;
+}
+
+input {
+  height: 23px;
+  width: 230px;
+  margin: 3px;
+ border-radius: 5px;
+ outline: none;
+ border: 0;
+}
