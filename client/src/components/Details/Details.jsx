@@ -65,15 +65,13 @@ export default function Details(props) {
                   </div>
               </div>
             </div>
-            <div className={styles.divAbout}>
-            
+            <div className={styles.divAbout}> 
              <h1>About</h1> 
               <p
                 dangerouslySetInnerHTML={{
                   __html: detailVideogame.description,
                 }}
               />
-            
             </div>
           </div>
         ) : (

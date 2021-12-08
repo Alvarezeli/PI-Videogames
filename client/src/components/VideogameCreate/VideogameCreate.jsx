@@ -13,6 +13,37 @@ const platforms = require('../../Platforms.data/platforms.json')
 ///---> VALIDACION DE ERRORES <---///
 function validate(input){
     let errors = {};
+    // --> VALIDACION NOMBRE <-- //
+    if (!input.name) {
+        errors.name = 'Se require un nombre';
+    } else if(!/[^0-9\.\,\"\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+/.test(input.name)){
+        errors.name = 'El nombre es invalido'
+    }
+    // --> VALIDACION DESCRIPCION <-- //
+    if(!input.description){
+        errors.description = 'Se requiere una descripcion'
+    } else if(!/[^0-9\.\,\"\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+/.test(input.description)){
+        errors.description = 'La descripcion es invalida'
+    }
+ 
+    // --> VALIDACION RATING <-- //
+    if(!input.rating){
+        errors.rating = 'Se requiere que un puntaje del juego'
+    } else if(!/[0-5]/.test(input.rating)){
+        errors.rating = 'El rating ingresado es invalido'
+    }
+
+    // --> VALIDACION LANZAMIENTO <-- //
+    if(!input.released){
+        errors.released = 'Se requiere una fecha de lanzamiento'
+    } 
+    return errors;
+};
+
+
+/*
+function validate(input){
+    let errors = {};
     if (!input.name) {
         errors.name = 'Se require un nombre';
     } else if(!input.description){
@@ -24,6 +55,7 @@ function validate(input){
     } 
     return errors
 };
+*/
 
 ///---> FORMULARIO <---///
 export default function VideogameCreate(){
