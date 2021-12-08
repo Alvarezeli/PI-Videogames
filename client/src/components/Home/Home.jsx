@@ -13,7 +13,7 @@ import Paginado from "../Paginado/Paginado";
 import styles from "./Home.module.css";
 import NavBar from "../NavBar/NavBar";
 import Button from '../Buttons/Button';
-//import Loading from "../Loading/Loading";
+import Loading from "../Loading/Loading";
 
 
 export default function Home() {
@@ -120,7 +120,7 @@ export default function Home() {
               </>
             );
           }) : 
-          <div>Loading...</div> 
+          <Loading />
           }
         </div>
         {/*Props que necesita el paginado para funcionar*/}
