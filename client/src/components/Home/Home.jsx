@@ -12,7 +12,7 @@ import Card from "../Card/Card";
 import Paginado from "../Paginado/Paginado";
 import styles from "./Home.module.css";
 import NavBar from "../NavBar/NavBar";
-import Button from '../Buttons/Button';
+// import Button from '../Buttons/Button';
 import Loading from "../Loading/Loading";
 
 
@@ -76,6 +76,7 @@ export default function Home() {
       <NavBar/>
       <h1 className={styles.title}>Videogames App</h1>
       <div>
+        <div className={styles.divFilters}>
         {/*----> Ordenamiento<----*/}
         <select onChange={(e) => handleSort(e)}>
           <option>Orders</option>
@@ -103,7 +104,8 @@ export default function Home() {
             );
           })}
         </select>
-        <Button onClick={(e) => { handleClickReset(e)}}> Reset </Button>
+        <button onClick={(e) => { handleClickReset(e)}}> Reset filters </button>
+        </div>
         <div className={styles.cardPadre}>
           {currentVideogames ? currentVideogames.map((v) => {
             // console.log(v)

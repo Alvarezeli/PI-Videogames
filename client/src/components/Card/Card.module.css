@@ -1,6 +1,6 @@
 .divCard{
     margin: 20px;
-    height: 310px;
+    height: 330px;
     border-radius: 1rem;
     padding: 6px;
     backdrop-filter: blur(25px);
@@ -13,12 +13,27 @@
     justify-content: space-between;
 }
 
+.divTitle{
+    display: flex;
+    justify-content: center;
+    word-wrap: break-word;
+    width: 290px;
+}
+
 .titleCard{
+    
     font-family: 'Passion One', cursive;
-    font-size: 30px;
+    font-size: 27px;
     font-weight: normal;
     margin: 8px;
     letter-spacing: 1px;
+}
+
+
+.genrePadre ul{
+    padding-left: 0;
+    margin: 0;
+    height: 57px;
 }
 
 .genrePadre li{
@@ -29,5 +44,4 @@
     width: 280px;
     height: 190px;
     border-radius: 1rem;
-
 };

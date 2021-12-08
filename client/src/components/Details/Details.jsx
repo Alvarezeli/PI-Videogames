@@ -30,11 +30,15 @@ export default function Details(props) {
               src={detailVideogame.background_image}
               alt=""
             />
-            <div>
-              <h1>{detailVideogame.name}</h1>
+            <div className={styles.divSuper}>
+              <div className={styles.divTitle}>
+               <h1>{detailVideogame.name}</h1>
+              </div>
+              <br/>
+              <br/>
               <div className={styles.divUl}>
                 <div>
-                  <h4>Genres</h4>
+                  <h3>Genres</h3>
                   <ul>
                     {detailVideogame?.genres.map((g) => (
                       <li>{g.name}</li>
@@ -42,7 +46,7 @@ export default function Details(props) {
                   </ul>
                 </div>
                 <div>
-                  <h4>Platforms</h4>
+                  <h3>Platforms</h3>
                   <ul>
                     {detailVideogame.platforms.map((p) => (
                       <li>{p}</li>
@@ -52,18 +56,18 @@ export default function Details(props) {
               </div>
               <div className={styles.divRecargado}>
                   <div>
-                    <h4>Released</h4>
+                    <h3>Released</h3>
                     <h5>{detailVideogame.released}</h5>
                   </div>
                   <div>
-                    <h4>Rating</h4>
+                    <h3>Rating</h3>
                     <h5>{detailVideogame.rating}</h5>
                   </div>
               </div>
             </div>
             <div className={styles.divAbout}>
             
-             <h4>About:</h4> 
+             <h1>About</h1> 
               <p
                 dangerouslySetInnerHTML={{
                   __html: detailVideogame.description,
