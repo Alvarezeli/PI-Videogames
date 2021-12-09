@@ -7,23 +7,15 @@ const { Videogame, Genre, videogame_genre } = require("../db.js");
 const { Op } = require("sequelize");
 const router = Router();
 
-//ENDPOINTS
-/* - 
-
-- GET https://api.rawg.io/api/games/{id}
-https://api.rawg.io/api/games/witcher?key=b44e674330244a80bdca90e54415cb8b */
-
-/* - [ ] __GET /videogames__:
-- Obtener un listado de los videojuegos
-- Debe devolver solo los datos necesarios para la ruta principal*/
-
-//////////////OPERADORES OP /////////////
+////////////// OPERADORES OP /////////////
 // [Op.like]: '%hat',                       // LIKE '%hat'
 //[Op.substring]: 'hat',                   // LIKE '%hat%'
 
 //////////// END POINTS ////////////////
 //GET https://api.rawg.io/api/games
 //GET https://api.rawg.io/api/games?search={game}
+
+/// ---> GET /videogames <--- ///
 
 router.get("/videogames", async (req, res) => {
   try {
@@ -45,7 +37,7 @@ router.get("/videogames", async (req, res) => {
       let count = await Videogame.count({
         where: {
           name: {
-            [Op.iLike]: `%${req.query.name}%`, //iLike es case insensitive
+            [Op.iLike]: `%${req.query.name}%`, 
           },
         },
       });
@@ -72,13 +64,10 @@ router.get("/videogames", async (req, res) => {
       //Union de los datos
       let dataAll = [...datadb, ...arrDataApi];
       return dataAll.length && res.json(dataAll)
-     
       } catch (error) {
         res.sendStatus(404);
-      }
-      
+      }  
     }
-
     //Si no llega por query
     //consulte a la base de datos
     let allDataDb = await Videogame.findAll({
@@ -94,9 +83,7 @@ router.get("/videogames", async (req, res) => {
     });
     // Se piden 20 de la BD - los 100 variables de la API / 20 juegos que trae la api en cada vuelta
     let rest = Math.ceil((100 - count) / 20); // 5
-
     let contador = 1;
-
     while (contador <= rest) {
       const responseApi = await axios.get(
         `https://api.rawg.io/api/games?key=${API_KEY}&page=${contador}`
@@ -107,7 +94,7 @@ router.get("/videogames", async (req, res) => {
           name: el.name,
           id: el.id,
           background_image: el.background_image,
-          genres: el.genres.map((genre) => ({name: genre.name})), //para que me devuelva todos los generos
+          genres: el.genres.map((genre) => ({name: genre.name})), 
           released: el.released,
           rating: el.rating,
           description: el.description,
@@ -126,14 +113,7 @@ router.get("/videogames", async (req, res) => {
 });
 
 /* - [ ] __GET /videogame/{idVideogame}__:
-- Obtener el detalle de un videojuego en particular
-- Debe traer solo los datos pedidos en la ruta de detalle de videojuego
-- Incluir los géneros asociados.
-
 - GET https://api.rawg.io/api/games/{id}
-
-https://api.rawg.io/api/games/5505?key=b44e674330244a80bdca90e54415cb8
-
  */
 
 router.get("/videogame/:id", async (req, res) => {
@@ -156,9 +136,7 @@ router.get("/videogame/:id", async (req, res) => {
         const searchApi = await axios.get(
           `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
         );
-        //res.json(searchApi.data.genres)
         if (searchApi) {
-          //console.log('lo estoy intentando')
           return res.json({
             name: searchApi.data.name,
             id: searchApi.data.id,
@@ -179,10 +157,7 @@ router.get("/videogame/:id", async (req, res) => {
   }
 });
 
-/* - [ ] __POST /videogame__:
-  - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
-  - Crea un videojuego en la base de datos
- */
+/* - [ ] __POST /videogame__: */
 router.post("/videogame", async (req, res) => {
   const {
     name,
@@ -208,7 +183,7 @@ router.post("/videogame", async (req, res) => {
         createdInDb,
       }
     });
-    console.log(genres)
+    //console.log(genres)
     genres.map( async genre => {
      const [newGenre, genreBooleano] = await Genre.findOrCreate({
         where: { name : genre},

@@ -96,13 +96,13 @@ export default function Home() {
           <option value="All" key="30">
             All genres
           </option>
-          {allGenres.map((genre) => {
+          {allGenres && allGenres.map((genre) => {
             return (
               <option value={genre.name} key={genre.id}>
                 {genre.name}
               </option>
             );
-          })}
+          })} 
         </select>
         <button onClick={(e) => { handleClickReset(e)}}> Reset filters </button>
         </div>
@@ -110,7 +110,7 @@ export default function Home() {
           {currentVideogames ? currentVideogames.map((v) => {
             // console.log(v)
             return (
-              <>
+              <div key={v.id}>
                 <Link to={"/home/" + v.id}>
                   <Card
                     name={v.name}
@@ -119,7 +119,7 @@ export default function Home() {
                     key={v.id}
                   />
                 </Link>
-              </>
+              </div>
             );
           }) : 
           <Loading />

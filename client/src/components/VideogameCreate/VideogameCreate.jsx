@@ -1,5 +1,5 @@
 import React from "react";
-import {useState, useEffect} from 'react';
+import {useState } from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar/NavBar";
@@ -16,13 +16,13 @@ function validate(input){
     // --> VALIDACION NOMBRE <-- //
     if (!input.name) {
         errors.name = 'Se require un nombre';
-    } else if(!/[^0-9\.\,\"\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+/.test(input.name)){
+    } else if(!/[a-zA-Z]/.test(input.name)){
         errors.name = 'El nombre es invalido'
     }
     // --> VALIDACION DESCRIPCION <-- //
     if(!input.description){
         errors.description = 'Se requiere una descripcion'
-    } else if(!/[^0-9\.\,\"\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+/.test(input.description)){
+    } else if(!/[a-zA-Z]/.test(input.description)){
         errors.description = 'La descripcion es invalida'
     }
  
@@ -33,29 +33,20 @@ function validate(input){
         errors.rating = 'El rating ingresado es invalido'
     }
 
+    // --> VALIDACION DE IMAGEN <-- //
+    if(!input.background_image){
+        errors.background_image = 'Se requiere una imagen'
+    } else if(!/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/.test(input.background_image)){
+        errors.background_image = 'La url de la imagen ingresada es invalida'
+    }
+
     // --> VALIDACION LANZAMIENTO <-- //
     if(!input.released){
         errors.released = 'Se requiere una fecha de lanzamiento'
     } 
-    return errors;
+   return errors;
 };
 
-
-/*
-function validate(input){
-    let errors = {};
-    if (!input.name) {
-        errors.name = 'Se require un nombre';
-    } else if(!input.description){
-        errors.description = 'Se requiere una descripcion'
-    } else if(!input.rating){
-        errors.rating = 'Se requiere que un puntaje del juego'
-    } else if(!input.released){
-        errors.released = 'Se requiere una fecha de lanzamiento del juego'
-    } 
-    return errors
-};
-*/
 
 ///---> FORMULARIO <---///
 export default function VideogameCreate(){
@@ -178,17 +169,20 @@ export default function VideogameCreate(){
                <div>
                    <label>Image</label>
                    <br/>
-                   <input type='text' value={input.background_image} name='background_image' onChange={(e)=>handleChange(e)} required/>
+                   <input className={errors.background_image && 'danger'} type='text' placeholder='Ingresa una imagen...' value={input.background_image} name='background_image' onChange={(e)=>handleChange(e)} />
+                   {errors.background_image && (
+                        <p className='danger'>{errors.background_image}</p>
+                   )}
                </div>
                <br/>
                <div className={styles.selects}>
                <select  onChange={(e)=> handleSelectPlatforms(e)}>
-                   <option>
+                   <option value='platf' key='88'>
                        Platforms
                    </option>
                    {platforms.map( platform => {
                        return(
-                           <option value={platform.name} key={platform.key}>{platform.name}</option>
+                           <option value={platform.name} key={platform.id}>{platform.name}</option>
                        );
                    })};
                </select>
@@ -209,15 +203,15 @@ export default function VideogameCreate(){
            </form>
 
            {input.genres.map(element => 
-            <div className={styles.cardGenre}>
-            <div>{element}</div>    
+            <div className={styles.cardGenre} key={element.id}>
+            <div key={element.id}>{element}</div>    
             <button onClick={()=>handleDelectGenre(element)} className={styles.btnGenre}>X</button>
             </div>
             )}
 
             {input.platforms.map(pla => 
-            <div className={styles.cardPlat}>
-            <div>{pla}</div>    
+            <div className={styles.cardPlat} key={pla.id} >
+            <div key={pla.id}>{pla}</div>    
             <button onClick={()=>handleDelectPlatforms(pla)} className={styles.btnPla}>x</button>
             </div>
             )}

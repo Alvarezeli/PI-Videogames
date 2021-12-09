@@ -32,7 +32,6 @@ function rootReducer(state = initialState, action) {
           : allVideogames.filter((game) =>
               game.genres.find((genre) => genre.name === action.payload)
             );
-      //const gamesFilter = action.payload === 'All' ? allVideogames : allVideogames.filter(game => game.genres.includes(action.payload))
       return {
         ...state,
         videogames: gamesFilter,
@@ -56,6 +55,7 @@ function rootReducer(state = initialState, action) {
         genres: action.payload,
       };
 
+    /// ---> FILTROS <--- ///
     case FILTER_CREATED_OR_EXISTED:
       const allVideogames2 = state.allVideogames;
       const createdOrExisted =

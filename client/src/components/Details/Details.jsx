@@ -39,17 +39,17 @@ export default function Details(props) {
               <div className={styles.divUl}>
                 <div>
                   <h3>Genres</h3>
-                  <ul>
+                  <ul key={Math.random(2, 9)}>
                     {detailVideogame?.genres.map((g) => (
-                      <li>{g.name}</li>
+                      <li key={Math.random(0, 10)}>{g.name}</li>
                     ))}
                   </ul>
                 </div>
                 <div>
                   <h3>Platforms</h3>
-                  <ul>
-                    {detailVideogame.platforms.map((p) => (
-                      <li>{p}</li>
+                  <ul key={Math.random(1,5)}>
+                    {detailVideogame?.platforms.map((p) => (
+                      <li key={Math.random(0, 10)}>{p}</li>
                     ))}
                   </ul>
                 </div>
