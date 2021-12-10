@@ -12,7 +12,6 @@ import Card from "../Card/Card";
 import Paginado from "../Paginado/Paginado";
 import styles from "./Home.module.css";
 import NavBar from "../NavBar/NavBar";
-// import Button from '../Buttons/Button';
 import Loading from "../Loading/Loading";
 
 
@@ -25,7 +24,6 @@ export default function Home() {
   /* ---> PAGINADO <--- */
 
   const [orden, setOrden] = useState("");
-  //Vamos a intentar el paginado
   //Nos definimos varios estados locales
   //1. Un estado con la pagina actual y otro estado que me sete la pagina actual
   const [currentPage, setCurrentPage] = useState(1); //Comienza en 1 por que siempre voy a arrancar en la 1° pag

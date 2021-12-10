@@ -25,21 +25,18 @@ function validate(input){
     } else if(!/[a-zA-Z]/.test(input.description)){
         errors.description = 'La descripcion es invalida'
     }
- 
     // --> VALIDACION RATING <-- //
     if(!input.rating){
         errors.rating = 'Se requiere que un puntaje del juego'
     } else if(!/[0-5]/.test(input.rating)){
         errors.rating = 'El rating ingresado es invalido'
     }
-
     // --> VALIDACION DE IMAGEN <-- //
     if(!input.background_image){
         errors.background_image = 'Se requiere una imagen'
     } else if(!/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/.test(input.background_image)){
         errors.background_image = 'La url de la imagen ingresada es invalida'
     }
-
     // --> VALIDACION LANZAMIENTO <-- //
     if(!input.released){
         errors.released = 'Se requiere una fecha de lanzamiento'
@@ -64,6 +61,7 @@ export default function VideogameCreate(){
         genres: [],
     });
 
+    // --> HANDLERS <-- //
     function handleChange(e){
         setInput({
             ...input,
@@ -176,8 +174,8 @@ export default function VideogameCreate(){
                </div>
                <br/>
                <div className={styles.selects}>
-               <select  onChange={(e)=> handleSelectPlatforms(e)}>
-                   <option value='platf' key='88'>
+               <select  onChange={(e)=> handleSelectPlatforms(e)} required>
+                   <option value='' key='88'>
                        Platforms
                    </option>
                    {platforms.map( platform => {
@@ -187,8 +185,8 @@ export default function VideogameCreate(){
                    })};
                </select>
                <br/>
-               <select onChange={(e)=> handleSelectGenre(e)}>
-               <option value="choose" key="45">
+               <select onChange={(e)=> handleSelectGenre(e)} required>
+               <option value="" key="45">
                 Choose genre
                </option>
                    {genres.map(genre => {

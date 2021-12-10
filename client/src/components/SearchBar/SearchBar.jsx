@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getNameVideogames } from "../../actions";
 import styles from './SearchBar.module.css';
 
+
 export default function SearchBar(){
     const dispatch = useDispatch();
     const [name, setName] = useState('');
@@ -17,7 +18,7 @@ export default function SearchBar(){
     function handleSubmit(e){
         e.preventDefault();
         dispatch(getNameVideogames(name))
-        setName('')
+        //setName('')
         document.getElementById('search').value = '';
         document.getElementById('search').focus();
     };

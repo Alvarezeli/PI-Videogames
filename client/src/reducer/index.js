@@ -4,7 +4,7 @@ import {
   GET_GENRES,
   FILTER_CREATED_OR_EXISTED,
   ORDER_BY_RATING,
-  GET_NAME_VIDEOGAMES,
+  GET_NAME_VIDEOGAMES, 
   GET_DETAIL
 } from "../Constants/ActionTypes";
 
@@ -12,11 +12,12 @@ const initialState = {
   videogames: [],
   genres: [],
   allVideogames: [],
-  detail: []
+  detail: [],
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+
     case GET_VIDEOGAMES:
       return {
         ...state,
@@ -24,24 +25,18 @@ function rootReducer(state = initialState, action) {
         allVideogames: action.payload,
       };
 
-    case FILTER_VIDEOGAMES_BY_GENRES:
-      const allVideogames = state.allVideogames; // [{action}, {adventure}]
-      const gamesFilter =
-        action.payload === "All"
-          ? allVideogames
-          : allVideogames.filter((game) =>
-              game.genres.find((genre) => genre.name === action.payload)
-            );
-      return {
-        ...state,
-        videogames: gamesFilter,
-      };
-
+    // --> SEARCH <-- //  
     case GET_NAME_VIDEOGAMES:
       return {
         ...state,
-        videogames: action.payload
+        videogames: action.payload,
       }
+
+   case GET_DETAIL:
+     return {
+       ...state,
+       detail: action.payload
+      };
 
     case 'POST_VIDEOGAME':
       return {
@@ -55,7 +50,22 @@ function rootReducer(state = initialState, action) {
         genres: action.payload,
       };
 
-    /// ---> FILTROS <--- ///
+    // --> FILTRO POR GENEROS <-- //   
+    case FILTER_VIDEOGAMES_BY_GENRES:
+      const allgames = state.videogames; // [{action}, {adventure}]
+      const gamesFilter =
+        action.payload === "All"
+          ? allgames
+          : allgames.filter((game) =>
+              game.genres.find((genre) => genre.name === action.payload) 
+            );
+           // console.log(gamesFilter)
+      return {
+        ...state,
+        videogames: gamesFilter,  
+      };
+
+    /// ---> FILTROS CREADOS O EXISTENTES <--- ///
     case FILTER_CREATED_OR_EXISTED:
       const allVideogames2 = state.allVideogames;
       const createdOrExisted =
@@ -64,14 +74,7 @@ function rootReducer(state = initialState, action) {
           : allVideogames2.filter((game) => !game.createdInDb);
       return {
         ...state,
-        videogames:
-          action.payload === "all" ? state.allVideogames : createdOrExisted,
-      };
-
-    case GET_DETAIL:
-      return {
-        ...state,
-        detail: action.payload
+        videogames: action.payload === "all" ? state.allVideogames : createdOrExisted,
       };
 
     case ORDER_BY_RATING:
