@@ -25,7 +25,7 @@ function rootReducer(state = initialState, action) {
         allVideogames: action.payload,
       };
 
-    // --> SEARCH <-- //  
+    // --> BOTON DE BUSQUEDA <-- //  
     case GET_NAME_VIDEOGAMES:
       return {
         ...state,

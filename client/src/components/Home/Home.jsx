@@ -38,6 +38,7 @@ export default function Home() {
     indexOfLastVideogame
   );
   const paginado = (pageNumber) => {
+    //es lo que me renderiza el front 
     setCurrentPage(pageNumber);
   };
 

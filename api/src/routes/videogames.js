@@ -19,7 +19,7 @@ const router = Router();
 
 router.get("/videogames", async (req, res) => {
   try {
-    //Si me llega por query
+    // --> LLEGA POR QUERY <-- //
     if (req.query.name) {
       try {
         //console.log(req.query.name)
@@ -27,7 +27,7 @@ router.get("/videogames", async (req, res) => {
       let datadb = await Videogame.findAll({
         where: {
           name: {
-            [Op.iLike]: `%${req.query.name}%`,
+            [Op.iLike]: `%${req.query.name}%`
           },
         },
         limit: 15,
@@ -68,7 +68,7 @@ router.get("/videogames", async (req, res) => {
         res.sendStatus(404);
       }  
     }
-    //Si no llega por query
+    // ---> SI NO LLEGA POR QUERY <--- //
     //consulte a la base de datos
     let allDataDb = await Videogame.findAll({
       include: {model : Genre, attributes: ["name"], through: {attributes : []}},
@@ -81,7 +81,7 @@ router.get("/videogames", async (req, res) => {
     let count = await Videogame.count({
       limit: 100,
     });
-    // Se piden 20 de la BD - los 100 variables de la API / 20 juegos que trae la api en cada vuelta
+    // Se piden de la BD - los 100 variables de la API / 20 juegos que trae la api en cada vuelta
     let rest = Math.ceil((100 - count) / 20); // 5
     let contador = 1;
     while (contador <= rest) {
