@@ -6,6 +6,37 @@
 
 .divFilters select {
     padding: 4px;
+    appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+    display: inline-block;
+    cursor: pointer;
+    outline: 0; 
+    border: 0;
+    border-radius: 0;
+    background: #f0f0f0;
+    color: #3d3d3d;
+	font-size: 0.9em;
+	color: #999;
+    border:2px solid rgba(0,0,0,0.2);
+    border-radius: 7px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+.divOrders select {
+    padding: 5px;
+    margin: 5px;
+}
+
+.divCreated select {
+    padding: 5px;
+    margin: 5px;
+}
+
+.filterGenre select {
+    padding: 5px;
+    margin: 5px;
 }
 
 .divFilters button {
@@ -14,13 +45,18 @@
     outline: none;
     border: none;
     cursor: pointer;
+    padding: 4px;
+    height: 26px;
+    width: 90px;
+    margin: 6px;
+    
 }
 
 .cardPadre{
     display: flex;
     flex-wrap: wrap;
-    padding: 30px;
-    margin: 10px;
+    padding: 15px;
+    margin: 3px;
     justify-content: center;
 }
 

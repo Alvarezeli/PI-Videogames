@@ -77,6 +77,7 @@ export default function Home() {
       <div>
         <div className={styles.divFilters}>
         {/*----> Ordenamiento<----*/}
+        <div className={styles.divOrders}>
         <select onChange={(e) => handleSort(e)}>
           <option>Orders</option>
           <option value="asc">Ascendent</option>
@@ -84,13 +85,19 @@ export default function Home() {
           <option value="low_ToBest">Lowest to best rating</option>
           <option value="best_ToLow">Best to lowest rating</option>
         </select>
+        <i></i>
+        </div>
         {/*----> Filtrado por Creados o Existentes <----*/}
+        <div className={styles.divCreated}>
         <select onChange={(e) => handleFilterCreateOrExisted(e)}>
           <option value="all">All</option>
           <option value="created">Created by me</option>
           <option value="existed">From Api</option>
         </select>
+        <i></i>
+        </div> 
         {/*----> Filtrado por Genres <----*/}
+        <div className={styles.filterGenre}>
         <select onChange={(e) => handleFilterGenre(e)}>
           <option value="All" key="30">
             All genres
@@ -103,6 +110,8 @@ export default function Home() {
             );
           })} 
         </select>
+        <i></i>
+        </div>
         <button onClick={(e) => { handleClickReset(e)}}> Reset filters </button>
         </div>
         <div className={styles.cardPadre}>

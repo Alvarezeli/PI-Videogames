@@ -93,7 +93,7 @@ export default function VideogameCreate(){
         e.preventDefault();
        // console.log(input)
         dispatch(postVideogames(input))
-        alert('Personaje creado')
+        alert('Videojuego creado')
         setInput({
             name: '',
             description: '',
