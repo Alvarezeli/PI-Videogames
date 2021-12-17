@@ -3,8 +3,7 @@
     height: 330px;
     border-radius: 1rem;
     padding: 6px;
-    backdrop-filter: blur(25px);
-
+    backdrop-filter: blur(30px);
 };
 
 
@@ -25,14 +24,14 @@
     font-family: 'Passion One', cursive;
     font-size: 27px;
     font-weight: normal;
-    margin: 8px;
+    margin: 8px 4px 0px 4px;
     letter-spacing: 1px;
 }
 
 
 .genrePadre ul{
-    padding-left: 0;
-    margin: 0;
+    margin: 4px;
+    padding: 8px;
     height: 57px;
 }
 

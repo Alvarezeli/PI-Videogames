@@ -1,71 +1,71 @@
-.divFilters{
-    display: flex;
-    justify-content: center;
-    align-content: center;
+.divFilters {
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .divFilters select {
-    padding: 4px;
-    appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-    display: inline-block;
-    cursor: pointer;
-    outline: 0; 
-    border: 0;
-    border-radius: 0;
-    background: #f0f0f0;
-    color: #3d3d3d;
-	font-size: 0.9em;
-	color: #999;
-    border:2px solid rgba(0,0,0,0.2);
-    border-radius: 7px;
-    position: relative;
-    transition: all 0.25s ease;
+  padding: 4px;
+  display: inline-block;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  background: #f0f0f0;
+  color: #3d3d3d;
+  font-size: 0.9em;
+  color: rgb(73, 73, 73);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  position: relative;
+  transition: all 0.25s ease;
 }
 
 .divOrders select {
-    padding: 5px;
-    margin: 5px;
+  padding: 5px;
+  margin: 5px;
 }
 
 .divCreated select {
-    padding: 5px;
-    margin: 5px;
+  padding: 5px;
+  margin: 5px;
 }
 
 .filterGenre select {
-    padding: 5px;
-    margin: 5px;
+  padding: 5px;
+  margin: 5px;
 }
 
 .divFilters button {
-    background-color: #F6830F;
-    color: white;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    height: 26px;
-    width: 90px;
-    margin: 6px;
-    
+  background-color: #f6830f;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  height: 30px;
+  width: 90px;
+  margin: 6px;
+  border-radius: 5px;
+  transition: 0.5s;
 }
 
-.cardPadre{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 15px;
-    margin: 3px;
-    justify-content: center;
+.divFilters button:active {
+  transform: scale(0.95);
 }
 
-.title{ 
-    font-family: 'Bebas Neue', cursive;
-    font-size: 4vw;
-    letter-spacing: 3.5px;
-    margin: 10px;
+.cardPadre {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+  margin: 3px;
+  justify-content: center;
 }
 
 
-   
+.title {
+  font-family: "Bebas Neue", cursive;
+  font-size: 4vw;
+  letter-spacing: 3.5px;
+  margin: 10px;
+}

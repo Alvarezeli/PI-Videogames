@@ -14,7 +14,6 @@ import styles from "./Home.module.css";
 import NavBar from "../NavBar/NavBar";
 import Loading from "../Loading/Loading";
 
-
 export default function Home() {
   const dispatch = useDispatch();
   const allVideogames = useSelector((state) => state.videogames); //Esto es lo mismo que usar el mapStateToprops
@@ -38,13 +37,13 @@ export default function Home() {
     indexOfLastVideogame
   );
   const paginado = (pageNumber) => {
-    //es lo que me renderiza el front 
+    //es lo que me renderiza el front
     setCurrentPage(pageNumber);
   };
 
   useEffect(() => {
     dispatch(getVideogames()); //Es lo mismo que hacer el mapDispatchToprops
-  }, [dispatch]); 
+  }, [dispatch]);
 
   /* ---> HANDLERS <--- */
 
@@ -53,7 +52,7 @@ export default function Home() {
   }
 
   function handleClickReset(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     dispatch(getVideogames()); //me despache la accion y resetea todo y me trae todo de nuevo
   }
 
@@ -62,7 +61,7 @@ export default function Home() {
   }
 
   function handleSort(e) {
-   // console.log('Soy el console.log de handleSort',"por que no funcionas, quieres verme llorar?");
+    // console.log('Soy el console.log de handleSort',"por que no funcionas, quieres verme llorar?");
     e.preventDefault();
     dispatch(orderByAscDesc(e.target.value));
     setCurrentPage(1); //Cuando hago el ordenamiento setea la pagina en la primera
@@ -71,75 +70,87 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <NavBar/>
-      <h1 className={styles.title}>Videogames App</h1>
-      <div>
-        <div className={styles.divFilters}>
-        {/*----> Ordenamiento<----*/}
-        <div className={styles.divOrders}>
-        <select onChange={(e) => handleSort(e)}>
-          <option>Orders</option>
-          <option value="asc">Ascendent</option>
-          <option value="desc">Descendent</option>
-          <option value="low_ToBest">Lowest to best rating</option>
-          <option value="best_ToLow">Best to lowest rating</option>
-        </select>
-        <i></i>
-        </div>
-        {/*----> Filtrado por Creados o Existentes <----*/}
-        <div className={styles.divCreated}>
-        <select onChange={(e) => handleFilterCreateOrExisted(e)}>
-          <option value="all">All</option>
-          <option value="created">Created by me</option>
-          <option value="existed">From Api</option>
-        </select>
-        <i></i>
-        </div> 
-        {/*----> Filtrado por Genres <----*/}
-        <div className={styles.filterGenre}>
-        <select onChange={(e) => handleFilterGenre(e)}>
-          <option value="All" key="30">
-            All genres
-          </option>
-          {allGenres && allGenres.map((genre) => {
-            return (
-              <option value={genre.name} key={genre.id}>
-                {genre.name}
-              </option>
-            );
-          })} 
-        </select>
-        <i></i>
-        </div>
-        <button onClick={(e) => { handleClickReset(e)}}> Reset filters </button>
-        </div>
-        <div className={styles.cardPadre}>
-          {currentVideogames ? currentVideogames.map((v) => {
-            // console.log(v)
-            return (
-              <div key={v.id}>
-                <Link to={"/home/" + v.id}>
-                  <Card
-                    name={v.name}
-                    background_image={v.background_image}
-                    genres={v.genres}
-                    key={v.id}
-                  />
-                </Link>
+    <>
+      {currentVideogames.length === 0 ? (
+        <Loading />
+      ) : (
+        <div>
+          <NavBar />
+          <h1 className={styles.title}>Videogames App</h1>
+          <div>
+            <div className={styles.divFilters}>
+              {/*----> Ordenamiento<----*/}
+              <div className={styles.divOrders}>
+                <select onChange={(e) => handleSort(e)}>
+                  <option>Orders</option>
+                  <option value="asc">Ascendent</option>
+                  <option value="desc">Descendent</option>
+                  <option value="low_ToBest">Lowest to best rating</option>
+                  <option value="best_ToLow">Best to lowest rating</option>
+                </select>
+                <i></i>
               </div>
-            );
-          }) : 
-          <Loading />
-          }
+              {/*----> Filtrado por Creados o Existentes <----*/}
+              <div className={styles.divCreated}>
+                <select onChange={(e) => handleFilterCreateOrExisted(e)}>
+                  <option value="all">All</option>
+                  <option value="created">Created by me</option>
+                  <option value="existed">From Api</option>
+                </select>
+                <i></i>
+              </div>
+              {/*----> Filtrado por Genres <----*/}
+              <div className={styles.filterGenre}>
+                <select onChange={(e) => handleFilterGenre(e)}>
+                  <option value="All" key="30">
+                    All genres
+                  </option>
+                  {allGenres &&
+                    allGenres.map((genre) => {
+                      return (
+                        <option value={genre.name} key={genre.id}>
+                          {genre.name}
+                        </option>
+                      );
+                    })}
+                </select>
+                <i></i>
+              </div>
+              <button
+                onClick={(e) => {
+                  handleClickReset(e);
+                }}
+              >
+                {" "}
+                Reset filters{" "}
+              </button>
+            </div>
+            <div className={styles.cardPadre}>
+              {currentVideogames?.map((v) => {
+                // console.log(v)
+                return (
+                  <div className={styles.cardHijo} key={v.id}>
+                    <Link to={"/home/" + v.id}>
+                      <Card
+                        name={v.name}
+                        background_image={v.background_image}
+                        genres={v.genres}
+                        key={v.id}
+                      />
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+            {/*Props que necesita el paginado para funcionar*/}
+            <Paginado
+              videogamesPerPage={videogamesPerPage}
+              allVideogames={allVideogames.length}
+              paginado={paginado}
+            />
+          </div>
         </div>
-        {/*Props que necesita el paginado para funcionar*/}
-        <Paginado 
-        videogamesPerPage = {videogamesPerPage}
-        allVideogames = {allVideogames.length}
-        paginado = {paginado}
-        />
-      </div>
-    </div>
+      )}
+    </>
   );
 }

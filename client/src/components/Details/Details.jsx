@@ -5,6 +5,7 @@ import { getDetail } from "../../actions";
 import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Button from "../Buttons/Button";
+import Loading from '../Loading/Loading'
 import styles from "./Details.module.css";
 
 export default function Details(props) {
@@ -75,7 +76,7 @@ export default function Details(props) {
             </div>
           </div>
         ) : (
-          <p>💥💥¡Disculpe las molestias, esto va a llevar un tiempo!💥💥</p>
+          <Loading />
         )}
       </div>
     </div>
