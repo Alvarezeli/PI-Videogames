@@ -50,12 +50,12 @@
     .button {
       margin: 0.28rem;
       padding: 0.8rem 1.7rem;
-      top: 2.3rem;
+      top: 4.3rem;
       left: 1.25rem;
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 576px) {
     .button {
       margin: 0.22rem;
       padding: 0.5rem 1.5rem;

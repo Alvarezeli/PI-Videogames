@@ -153,6 +153,12 @@
     transform: scale(0.95);
 }
 
+@media (max-width: 1200px) {
+    .divButton {
+       margin-left: 31.2rem;
+    }
+}
+
 @media (max-width: 992px) {
     .divButton {
        margin-left: 24rem;
@@ -166,10 +172,6 @@
     .tittle{
         font-size: 3rem;
     }
-    .divForm input{
-        width: 19rem; 
-        height:1.5rem;
-    }
    
 }
 
@@ -180,4 +182,5 @@
     .divButton {
         margin-left: 12rem;
      }
+     
 }
