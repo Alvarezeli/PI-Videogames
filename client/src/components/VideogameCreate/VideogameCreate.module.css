@@ -5,27 +5,27 @@
 
 .tittle{
     font-family: 'Bebas Neue', cursive;
-    font-size: 4vw;
-    letter-spacing: 2.75px;
-    margin-top: 1rem;
-    margin-bottom: 2px;
+    font-size: 3.75rem;
+    letter-spacing: 0.1719rem;
+    margin-top: 0.05rem;
+    margin-bottom: 0.125rem;
 
 }
 
 .divForm{
     font-family: 'Lato', sans-serif;
     font-weight: bold;
-    letter-spacing: 0.75px
+    letter-spacing: 0.0469rem
 }
 
 .texto{
- border-radius: 5px;
+ border-radius: 0.3125rem;
 }
 
 .button{
     position: absolute;
-    top: 55px;
-    left: 20px;
+    top: 3.4375rem;
+    left: 1.25rem;
     cursor: pointer;
 }
 
@@ -37,8 +37,8 @@
 }
 
 .selects select {
-    padding: 5px;
-    margin: 5px;  
+    padding: 0.3125rem;
+    margin: 0.3125rem;  
     cursor: pointer;
     outline: 0;
     border: 0;
@@ -47,8 +47,8 @@
     color: #3d3d3d;
     font-size: 0.80rem;
     color: rgb(73, 73, 73);
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border: 0.125rem solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3125rem;
     position: relative;
     transition: all 0.25s ease;
    
@@ -64,8 +64,8 @@
     border-radius: 0;
     color: #3d3d3d;
     color: rgb(73, 73, 73);
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border: 0.125rem solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3125rem;
 }
 
 .divForm div label {
@@ -75,8 +75,8 @@
 .cardPlat{
     display: flex;
     justify-content: center;
-    width: 100px;
-    height: 25px;
+    width: 6.25rem;
+    height: 1.5625rem;
     display: inline-block;
 }
 
@@ -84,17 +84,17 @@
     background-color: red;
     z-index: -1;
     cursor: pointer;
-    border: 0px;
+    border: 0rem;
     text-align: center;
-    border-radius: 50px;
+    border-radius: 3.125rem;
 }
 
 /* ---> CARD ELIMINAR GENRES <--- */
 .cardGenre{
     display: flex;
     justify-content: center;
-    width: 100px;
-    height: 25px;
+    width: 6.25rem;
+    height: 1.5625rem;
     display: inline-block;
 }
 
@@ -102,9 +102,9 @@
     background-color: red;
     z-index: -1;
     cursor: pointer;
-    border: 0px;
+    border: 0rem;
     text-align: center;
-    border-radius: 50px;
+    border-radius: 3.125rem;
 }
 
 
@@ -114,27 +114,32 @@
     background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%)
 }
 
+.divButton{
+    justify-content: 'center';
+    align-items: 'center';
+    margin-left: 36.5rem;
+}
+
 .btnCrear{
     top: 82%;
-    left: 31.2rem;
-   position: relative;
     cursor: pointer;
+  
 }
 
 .btnCrear{
   
-    margin: 5px;
-    padding: 15px 30px;
+    margin: 0.3125rem;
+    padding: 0.9375rem 1.875rem;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
     background-size: 200% auto;
     color: white;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     display: block;
-    border: 0px;
+    border: 0rem;
     font-weight: 700;
-    box-shadow: 0px 0px 14px -7px #f09819;
+    box-shadow: 0rem 0rem 0.875rem -0.4375rem #f09819;
 }
 
 .btnCrear{
@@ -146,4 +151,33 @@
 
 .btnCrear{
     transform: scale(0.95);
+}
+
+@media (max-width: 992px) {
+    .divButton {
+       margin-left: 24rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .divButton {
+       margin-left: 18rem;
+    }
+    .tittle{
+        font-size: 3rem;
+    }
+    .divForm input{
+        width: 19rem; 
+        height:1.5rem;
+    }
+   
+}
+
+@media (max-width: 576px) {
+    .divPadre h1{
+        margin-top: 2rem;  
+    }
+    .divButton {
+        margin-left: 12rem;
+     }
 }

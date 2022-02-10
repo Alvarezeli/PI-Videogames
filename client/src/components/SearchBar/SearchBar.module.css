@@ -21,3 +21,9 @@
     background-color: #F6830F;
     color: white;
 }
+
+@media (max-width: 576px) {
+  .searchPadre {
+    display: none;
+  }
+}
