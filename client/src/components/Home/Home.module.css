@@ -65,7 +65,19 @@
 
 .title {
   font-family: "Bebas Neue", cursive;
-  font-size: 4vw;
+  font-size: 3.75rem;
   letter-spacing: 3.5px;
   margin: 10px;
+}
+
+@media (max-width: 768px) { 
+  .title{
+     font-size: 3.5rem
+  }
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-size: 2.5rem
+  }
 }

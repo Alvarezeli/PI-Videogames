@@ -3,7 +3,8 @@
     height: 330px;
     border-radius: 1rem;
     padding: 6px;
-    backdrop-filter: blur(30px);
+    backdrop-filter: brightness(0.40)
+    /* backdrop-filter: blur(30px); */
 };
 
 

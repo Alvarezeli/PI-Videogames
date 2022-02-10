@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;900&family=Oswald:wght@400;500&family=Passion+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;900&family=Oswald:wght@400;500&family=Passion+One&display=swap");
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   background-color: var(--body-color);
   color: var(--primary-font-color);
 }
 
 :root {
   --body-color: #222831;
-  --primary-font-color: #E0DEDE;
+  --primary-font-color: #e0dede;
 }
 
-body{
-  background-image: url('./assets/lara.jpg');
+body {
+  background-image: url("./assets/lara.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -33,7 +33,7 @@ input.danger {
   border: 2px solid red;
 }
 
-ul{
+ul {
   padding-left: 0;
 }
 
@@ -41,7 +41,7 @@ input {
   height: 23px;
   width: 230px;
   margin: 3px;
- border-radius: 5px;
- outline: none;
- border: 0;
+  border-radius: 5px;
+  outline: none;
+  border: 0;
 }
