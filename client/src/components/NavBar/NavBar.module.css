@@ -1,7 +1,7 @@
 .divNav{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-evenly; 
     padding: 5px;
     backdrop-filter: brightness(0.60);
 }
