@@ -13,6 +13,7 @@ const initialState = {
   genres: [],
   allVideogames: [],
   detail: [],
+  busqueda: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -29,8 +30,14 @@ function rootReducer(state = initialState, action) {
     case GET_NAME_VIDEOGAMES:
       return {
         ...state,
-        videogames: action.payload,
-      }
+        busqueda: action.payload,
+      };
+    
+    case "NO_FOUND_GAME":
+      return {
+        ...state,
+        busqueda: action.payload
+      };
 
    case GET_DETAIL:
      return {

@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getNameVideogames } from "../../actions";
 import styles from './SearchBar.module.css';
 
 
 export default function SearchBar(){
+
     const dispatch = useDispatch();
     const [name, setName] = useState('');
 
