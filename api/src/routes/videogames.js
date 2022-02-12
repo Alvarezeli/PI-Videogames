@@ -65,7 +65,7 @@ router.get("/videogames", async (req, res) => {
       let dataAll = [...datadb, ...arrDataApi];
       return dataAll.length && res.json(dataAll)
       } catch (error) {
-        res.sendStatus(404);
+        res.status(404)
       }  
     }
     // ---> SI NO LLEGA POR QUERY <--- //
@@ -153,7 +153,7 @@ router.get("/videogame/:id", async (req, res) => {
       }
     }
   } catch (error) {
-    res.status(404).send(error);
+    res.status(404).send("Uuups, los duendes otra vez");
   }
 });
 
@@ -193,8 +193,8 @@ router.post("/videogame", async (req, res) => {
     })
 
     videogameCreated
-      ? res.send("El videojuego fue creado con exito")
-      : res.send("El videojuego ya ha sido creado");
+      ? res.json({mensaje:"El videojuego fue creado con exito"})
+      : res.json({mensaje:"El videojuego ya ha sido creado"});
   } catch (error) {
     console.log(error);
     res.status(404).send("Uuups, los duendes otra vez");

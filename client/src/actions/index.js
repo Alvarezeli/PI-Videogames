@@ -9,43 +9,50 @@ import {
   GET_DETAIL,
 } from "../Constants/ActionTypes";
 
-
-export function getVideogames(){
-  return function(dispatch){
-    axios.get("http://localhost:3001/videogames")
-    .then( data => {
-      dispatch({
-        type: GET_VIDEOGAMES,
-        payload: data.data
+export function getVideogames() {
+  return function (dispatch) {
+    axios
+      .get("http://localhost:3001/videogames")
+      .then((data) => {
+        dispatch({
+          type: GET_VIDEOGAMES,
+          payload: data.data,
+        });
       })
-    })
-    .catch((err)=> {
-      console.log(err)
-    })
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 }
 
-
-export function getGenres(){
-  return function(dispatch){
-    axios.get("http://localhost:3001/genres")
-    .then((response) => {
-      dispatch({
-        type: GET_GENRES,
-        payload: response.data
+export function getGenres() {
+  return function (dispatch) {
+    axios
+      .get("http://localhost:3001/genres")
+      .then((response) => {
+        dispatch({
+          type: GET_GENRES,
+          payload: response.data,
+        });
       })
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 }
 
 export function postVideogames(payload) {
   return async function (dispatch) {
-    const resApi = await axios.post("http://localhost:3001/videogame", payload);
-    //console.log('Soy el console de resApi', resApi)
-    return resApi;
+    try {
+      const resApi = await axios.post(
+        "http://localhost:3001/videogame",
+        payload
+      );
+    //  console.log("Soy el console de resApi", resApi);
+      return resApi;
+    } catch (error) {
+      console.log(error.resApi);
+    }
   };
 }
 
@@ -80,12 +87,13 @@ export function getNameVideogames(name) {
       var json = await axios.get(
         "http://localhost:3001/videogames?name=" + name
       );
+      //console.log('soy barra de busqueda',json)
       return dispatch({
         type: GET_NAME_VIDEOGAMES,
         payload: json.data,
       });
     } catch (error) {
-      alert(error);
+      alert('El juego no pudo ser encontrado', error);
     }
   };
 }
