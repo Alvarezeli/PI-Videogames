@@ -197,9 +197,12 @@ export default function VideogameCreate(){
                </select>
                 </div>
                <br/>
-             <button disabled={true} className={styles.btnCrear} type = 'submit'>Crear videojuego</button> 
+               
+               <div className={styles.divButton}>
+               <button className={styles.btnCrear} type = 'submit'>Crear videojuego</button> 
+               </div>
            </form>
-
+           
            {input.genres.map(element => 
             <div className={styles.cardGenre} key={element.id}>
             <div key={element.id}>{element}</div>    

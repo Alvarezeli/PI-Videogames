@@ -62,12 +62,12 @@
   justify-content: center;
 }
 
-
 .title {
   font-family: "Bebas Neue", cursive;
   font-size: 3.75rem;
   letter-spacing: 3.5px;
   margin: 10px;
+  text-align: center;
 }
 
 @media (max-width: 768px) { 

@@ -17,6 +17,7 @@
     font-size: 25px;
     font-weight: lighter;
     outline: none;
+    text-align: center;
 }
 
 .number:hover{
