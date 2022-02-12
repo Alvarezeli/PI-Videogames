@@ -22,8 +22,9 @@
     color: white;
 }
 
-@media (max-width: 576px) {
-  .searchPadre {
-    display: none;
-  }
+.searchPadre button:hover {
+  cursor: pointer
 }
+
+
+

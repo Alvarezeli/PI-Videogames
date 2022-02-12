@@ -1,21 +1,27 @@
 
 .divPadre{
     position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .tittle{
     font-family: 'Bebas Neue', cursive;
     font-size: 3.75rem;
     letter-spacing: 0.1719rem;
-    margin-top: 0.05rem;
+    margin-top: 1rem;
     margin-bottom: 0.125rem;
+    text-align: center;
 
 }
 
 .divForm{
     font-family: 'Lato', sans-serif;
     font-weight: bold;
-    letter-spacing: 0.0469rem
+    letter-spacing: 0.0469rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .texto{
@@ -66,10 +72,15 @@
     color: rgb(73, 73, 73);
     border: 0.125rem solid rgba(0, 0, 0, 0.2);
     border-radius: 0.3125rem;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
 .divForm div label {
  font-size: 1.02rem;
+ justify-content: center;
+   
 }
 /* ---> CARD ELIMINAR PLATAFORMAS <---*/
 .cardPlat{
@@ -173,6 +184,11 @@
         font-size: 3rem;
     }
    
+}
+@media only screen and (max-width: 650px){
+    .divButton {
+        margin-left: 14rem;
+     }
 }
 
 @media (max-width: 576px) {

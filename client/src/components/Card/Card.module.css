@@ -3,8 +3,11 @@
     height: 330px;
     border-radius: 1rem;
     padding: 6px;
+    align-items: center;
+    justify-content: center;
     backdrop-filter: brightness(0.40)
     /* backdrop-filter: blur(30px); */
+  
 };
 
 
@@ -14,6 +17,7 @@
 }
 
 .divTitle{
+    text-align: center;
     display: flex;
     justify-content: center;
     word-wrap: break-word;
@@ -39,10 +43,14 @@
 .genrePadre li{
     list-style: none;
     font-size: 17px;
+    text-align: center;
+    overflow: hidden;
+    box-sizing:border-box
 }
 
 .imgCard{
     width: 280px;
     height: 190px;
     border-radius: 1rem;
+    padding-left: 5px
 };

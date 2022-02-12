@@ -4,10 +4,12 @@ body {
   font-family: "Lato", sans-serif;
   background-color: var(--body-color);
   color: var(--primary-font-color);
+  height: 100vh;
+  margin: 0;
 }
 
 :root {
-  --body-color: #222831;
+  --body-color: #151515;
   --primary-font-color: #e0dede;
 }
 
@@ -15,13 +17,13 @@ body {
   background-image: url("./assets/lara.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-  margin: 0;
+ 
+ 
   position: relative;
   background-attachment: fixed;
   background-position: 25% 25%;
 
-}
+}  
 
 p.danger {
   color: red;

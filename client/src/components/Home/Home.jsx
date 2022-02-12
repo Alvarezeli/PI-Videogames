@@ -76,8 +76,8 @@ export default function Home() {
       ) : (
         <div>
           <NavBar />
-          <h1 className={styles.title}>Videogames App</h1>
           <div>
+            <h1 className={styles.title}>Videogames App</h1>
             <div className={styles.divFilters}>
               {/*----> Ordenamiento<----*/}
               <div className={styles.divOrders}>

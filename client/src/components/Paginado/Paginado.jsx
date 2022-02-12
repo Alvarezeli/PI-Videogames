@@ -9,7 +9,7 @@ export default function Paginado({videogamesPerPage, allVideogames, paginado}) {
   }
 
   return(
-      <nav>
+      <div>
           <ul className = {styles.paginado}>
               { pageNumbers && 
               pageNumbers.map( number => (
@@ -18,6 +18,6 @@ export default function Paginado({videogamesPerPage, allVideogames, paginado}) {
                   </li>
               ))}
           </ul>
-      </nav>
+      </div>
   )
 }
