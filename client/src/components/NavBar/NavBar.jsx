@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import "./NavBar.css";
 import ReorderIcon from '@material-ui/icons/Reorder';
 
 export default function NavBar() {
+
   const [showLinks, setShowLinks] = useState(false);
 
   return (

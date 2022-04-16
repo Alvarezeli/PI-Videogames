@@ -1,23 +1,28 @@
 import React from "react";
-import styles from './Paginado.module.css'
+import styles from "./Paginado.module.css";
 
-export default function Paginado({videogamesPerPage, allVideogames, paginado}) {
+export default function Paginado({
+  videogamesPerPage,
+  allVideogames,
+  paginado,
+  currentPage,
+}) {
   const pageNumbers = [];
 
   for (let i = 0; i <= Math.trunc(allVideogames / videogamesPerPage); i++) {
-    pageNumbers.push(i + 1)
+    pageNumbers.push(i + 1);
   }
 
-  return(
-      <div>
-          <ul className = {styles.paginado}>
-              { pageNumbers && 
-              pageNumbers.map( number => (
-                  <li className = {styles.number} key={number}>
-                  <a onClick={() => paginado(number)}>{number}</a>
-                  </li>
-              ))}
-          </ul>
-      </div>
-  )
+  return (
+    <div>
+      <p className={styles.paginado}>
+        {pageNumbers &&
+          pageNumbers.map((number) => (
+            <button className={currentPage === number ? styles.select : styles.number } onClick={() => paginado(number)}>
+              {number}
+            </button>
+          ))}
+      </p>
+    </div>
+  );
 }
