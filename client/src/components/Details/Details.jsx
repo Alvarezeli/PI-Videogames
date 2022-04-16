@@ -14,7 +14,7 @@ export default function Details(props) {
 
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
-  }, [dispatch]);
+  }, [dispatch, props.match.params.id]);
 
   const detailVideogame = useSelector((state) => state.detail);
   //console.log ('SOY EL CONSOLE.LOG DEL STATE', detailVideogame)

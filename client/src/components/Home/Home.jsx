@@ -39,6 +39,7 @@ export default function Home() {
   const paginado = (pageNumber) => {
     //es lo que me renderiza el front
     setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: "smooth" })
   };
 
   useEffect(() => {
@@ -147,6 +148,7 @@ export default function Home() {
               videogamesPerPage={videogamesPerPage}
               allVideogames={allVideogames.length}
               paginado={paginado}
+              currentPage={currentPage}
             />
           </div>
         </div>

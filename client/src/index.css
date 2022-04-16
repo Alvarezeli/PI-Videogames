@@ -10,9 +10,9 @@ body {
 
 :root {
   --body-color: #151515;
-  --primary-font-color: #e0dede;
+  --primary-font-color: #e0dede
 }
-
+  
 body {
   background-image: url("./assets/lara.jpg");
   background-repeat: no-repeat;

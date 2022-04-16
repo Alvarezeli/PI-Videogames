@@ -22,8 +22,16 @@
 }
 
 .divNav .leftSide .divLinks a {
-  font-size: 18px;
-  margin-left: 18px;
+  font-size: 1rem;
+  margin-left: 2rem;
+  color: 'white';
+
+}
+
+.is-active {
+  color: #F6830F;
+  /* border-bottom: solid  #F6830F 0.1rem;  */
+  padding-bottom: 0.15rem;
 }
 
 .divNav .leftSide button {
@@ -40,7 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 20px;
+  padding-right: 2rem;
 }
 
 @media only screen and (max-width: 850px) {
@@ -58,7 +66,7 @@
 
 @media only screen and (max-width: 650px) {
   .divNav {
-    background-color:#393b3d;;
+    background-color: #393b3d;
   }
   .divNav .leftSide button {
     display: flex;
@@ -76,7 +84,7 @@
     max-height: 95px;
     width: 100%;
     backdrop-filter: brightness(0.2);
-    background-color:#393b3d;
+    background-color: #393b3d;
     /* background-color: rgba(0, 0, 0, 0.555); */
     display: flex;
     flex-direction: column;
@@ -94,8 +102,6 @@
   }
 
   .divNav .leftSide #hidden a:hover {
-   color: #BBBBBB;
-   
-  
+    color: #bbbbbb;
   }
 }
