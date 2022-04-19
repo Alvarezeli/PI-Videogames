@@ -41,7 +41,6 @@ router.get("/videogames", async (req, res) => {
           },
         },
       });
-      //console.log(count)
       let rest = 15 - count;
       let dataApi = await axios.get(
         `https://api.rawg.io/api/games?search=${req.query.name}&key=${API_KEY}&page_size=${rest}`
