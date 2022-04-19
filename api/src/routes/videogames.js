@@ -120,7 +120,6 @@ router.get("/videogame/:id", async (req, res) => {
   try {
     const { id } = req.params;
     //const id = req.params.id;
-    //console.log('Llego por params:', typeof(id))
     // Busca en la base de datos si tiene ese id
     if (id) {
       const gameDb = await Videogame.findByPk(id, {
