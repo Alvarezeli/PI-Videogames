@@ -60,7 +60,7 @@ router.get("/videogames", async (req, res) => {
         };
       });
 
-      //Union de los datos
+     
       let dataAll = [...datadb, ...arrDataApi];
       return dataAll.length && res.json(dataAll)
       } catch (error) {
