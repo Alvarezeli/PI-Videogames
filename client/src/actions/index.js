@@ -12,7 +12,7 @@ import {
 export function getVideogames() {
   return function (dispatch) {
     axios
-      .get("http://localhost:3001/videogames")
+      .get("http://videogames-app-eli.herokuapp.com/videogames")
       .then((data) => {
         dispatch({
           type: GET_VIDEOGAMES,
@@ -28,7 +28,7 @@ export function getVideogames() {
 export function getGenres() {
   return function (dispatch) {
     axios
-      .get("http://localhost:3001/genres")
+      .get("http://videogames-app-eli.herokuapp.com/genres")
       .then((response) => {
         dispatch({
           type: GET_GENRES,
@@ -45,7 +45,7 @@ export function postVideogames(payload) {
   return async function (dispatch) {
     try {
       const resApi = await axios.post(
-        "http://localhost:3001/videogame",
+        "http://videogames-app-eli.herokuapp.com/videogame",
         payload
       );
     //  console.log("Soy el console de resApi", resApi);
@@ -85,7 +85,7 @@ export function getNameVideogames(name) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "http://localhost:3001/videogames?name=" + name
+        "http://videogames-app-eli.herokuapp.com/videogames?name=" + name
       );
       //console.log('soy barra de busqueda',json)
       return dispatch({
@@ -102,7 +102,7 @@ export function getNameVideogames(name) {
 export function getDetail(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/videogame/" + id);
+      var json = await axios.get("http://videogames-app-eli.herokuapp.com/videogame/" + id);
       return dispatch({
         type: GET_DETAIL,
         payload: json.data,
