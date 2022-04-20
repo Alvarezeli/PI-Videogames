@@ -48,6 +48,6 @@ El contenido de `client` fue creado usando: Create React App.
 ### ¡Es responsive!
 
 <p>
-  <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/responsive.png' height="300px" width="45%"/></a>
-   <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/responsive%20detail.png' height="300px" width="45%"/></a>
+  <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/responsive.png' height="45%" width="45%"/></a>
+   <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/responsive%20detail.png' height="45%" width="45%"/></a>
 </p>
