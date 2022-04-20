@@ -26,6 +26,15 @@ Adicionalmente será necesario que creen desde psql una base de datos llamada `v
 
 El contenido de `client` fue creado usando: Create React App.
 
+## Funciones
+
+- Páginado
+- Filtrado por género y creados en base de datos o traidos de la api.
+- Ordenamiento Ascendente - Descendente.
+- Detalle del videojuego elegido.
+- Creación de un videojuego.
+- Búsqueda de un videojuego. 
+
 ## Vistas del proyecto
 
 <p>
@@ -39,6 +48,6 @@ El contenido de `client` fue creado usando: Create React App.
 ### ¡Es responsive!
 
 <p>
-  <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/responsive.png' height="45%" width="45%"/></a>
-   <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/responsive%20detail.png' height="45%" width="45%"/></a>
+  <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/responsive.png' height="40%" width="45%"/></a>
+   <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/responsive%20detail.png' height="40%" width="45%"/></a>
 </p>
