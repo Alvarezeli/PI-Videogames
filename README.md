@@ -38,7 +38,7 @@ El contenido de `client` fue creado usando: Create React App.
 ## Vistas del proyecto
 
 <p>
-     <a><img src='https://github.com/Alvarezeli/Alvarezeli/blob/main/PI%20-%20videogames/Captura%20de%20pantalla%202022-01-31%20192230.png' height="45%" width="45%"/></a>
+      <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/home.png' height="45%" width="45%"/></a>
       <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/paginado.png' height="45%" width="45%"/></a>
       <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/detalle.png' height="45%" width="45%"/></a>
       <a><img src='https://github.com/Alvarezeli/PI-Videogames/blob/main/client/src/assets/readme/Captura%20de%20pantalla%202022-01-31%20192542.png' height="45%" width="45%"/></a>
