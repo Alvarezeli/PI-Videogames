@@ -18,7 +18,7 @@ export default function Paginado({
       <p className={styles.paginado}>
         {pageNumbers &&
           pageNumbers.map((number) => (
-            <button className={currentPage === number ? styles.select : styles.number } onClick={() => paginado(number)}>
+            <button className={currentPage === number ? styles.select : styles.number } onClick={() => paginado(number)} key={number}>
               {number}
             </button>
           ))}
