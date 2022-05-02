@@ -11,7 +11,7 @@ import axios from "axios";
 
 dotenv.config();
 
-axios.defaults.baseURL = "http://videogames-app-eli.herokuapp.com" || "http://localhost:3000";
+axios.defaults.baseURL = "https://videogames-app-eli.herokuapp.com" || "https://localhost:3000";
 // console.log(process.env.REACT_APP_API)
 
 ReactDOM.render(
