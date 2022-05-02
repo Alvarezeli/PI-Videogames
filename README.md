@@ -1,5 +1,4 @@
 # Individual Project - Henry Videogames
-[![Netlify Status](https://api.netlify.com/api/v1/badges/172b7dbd-b96d-402c-99c6-461d4555fb5a/deploy-status)](https://app.netlify.com/sites/videogamesapp-eli/deploys)
 
 ## Objetivos del Proyecto
 
